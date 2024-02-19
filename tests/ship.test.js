@@ -7,6 +7,13 @@ describe('Ship Methods', () => {
     ship = createShip();
   });
 
+  describe('Name Related Methods', () => {
+    test('setName and getName should work correctly', () => {
+      ship.setName("Destroyer");
+      expect(ship.getName()).toMatch("Destroyer");
+    });  
+  });
+  
   describe('Length Related Methods', () => {
     test('ship should have a setLength method', () => {
       expect(ship.setLength).toBeDefined();
