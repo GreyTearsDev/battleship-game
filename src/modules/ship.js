@@ -8,6 +8,7 @@
 let createShip = () => {
   let ship = [];
   let damage = 0;
+  let name = "";
 
   /**
    * Sets the length of the ship.
@@ -38,6 +39,8 @@ let createShip = () => {
    */
   const isSunk = () => (hitCount() >= getLength() ? true : false);
 
+  const setName = (shipName) => name = shipName;
+  const getName = () => name;
   // expose public mthods
   return {
     setLength,
@@ -45,6 +48,8 @@ let createShip = () => {
     hit,
     hitCount,
     isSunk,
+    setName,
+    getName
   };
 };
 
