@@ -2,10 +2,12 @@
 
 /**
  * Creates a ship object with methods to manage its properties and state.
+ * @param {string} shipName - The name of the ship.
+ * @param {number} length - The length of the ship.
  * @returns {Object} A ship object with methods for setting length, getting length,
- *                   recording hits, counting hits, and determining if the ship is sunk.
+ *                   recording hits, counting hits, and determining if the ship is sunk.                                                                                
  */
-let createShip = (shipName, length) => {
+const Ship = (shipName, length) => {
   let ship = [];
   let damage = 0;
   let name = shipName;
@@ -35,7 +37,12 @@ let createShip = (shipName, length) => {
    */
   const isSunk = () => (hitCount() >= getLength() ? true : false);
 
+  /**
+   * Retrieves the name of the ship.
+   * @returns {string} The name of the ship.
+   */
   const getName = () => name;
+
   // expose public mthods
   return {
     getLength,
@@ -46,4 +53,4 @@ let createShip = (shipName, length) => {
   };
 };
 
-module.exports = createShip;
+module.exports = Ship;
