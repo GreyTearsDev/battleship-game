@@ -12,7 +12,7 @@ function GameBoard() {
     [0,0,0,0,0,0,0,0,0,0],
   ];
 
-  const placeShip = (ship, col, row) => {
+  const placeShip = (ship, row, col) => {
     for (let i = 0; i < ship.length; i++) {
       if (ship.orientation() === "horizontal") {
         board[row][col++] = ship.length;
@@ -20,6 +20,7 @@ function GameBoard() {
         board[row++][col] = ship.lenght;
       }
     }
+    console.log(board)
   }
 
   const getBoard = () => board;
