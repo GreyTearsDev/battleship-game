@@ -35,7 +35,7 @@ const Ship = (shipName, length) => {
    * Checks if the ship is sunk.
    * @returns {boolean} True if the number of hits equals or exceeds the ship's length, otherwise false.
    */
-  const isSunk = () => (hitCount() >= getLength() ? true : false);
+  const isSunk = () => hitCount() >= getLength();
 
   /**
    * Retrieves the name of the ship.
