@@ -55,6 +55,7 @@ const Ship = (shipName, length, isVertical) => {
 
   // expose public mthods
   return {
+    orientation,
     getLength,
     hit,
     hitCount,
