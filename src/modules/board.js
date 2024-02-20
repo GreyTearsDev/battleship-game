@@ -20,14 +20,22 @@ function GameBoard() {
         board[row++][col] = ship.lenght;
       }
     }
-    console.log(board)
   }
 
   const getBoard = () => board;
+
+  const isLegal = (ship, row, col) => {
+    if (ship.orientation() === "horizontal") {
+      return ship.length + col < board[row].length;
+    } else {
+      return ship.length + row < board.length;
+    }
+  }
   
   return {
     placeShip,
-    getBoard
+    getBoard,
+    isLegal
   }
 }
 
