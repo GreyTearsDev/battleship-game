@@ -10,6 +10,7 @@
  */ 
 const Ship = (shipName, length, isVertical) => {
   const ship = [];
+  ship.length = length;
   const name = shipName;
   let damage = 0;
 
@@ -17,16 +18,13 @@ const Ship = (shipName, length, isVertical) => {
    * Retrieves the orientation of the ship.
    * @returns {string} The orientation of the ship: "vertical" or "horizontal".
    */ 
-  const orientation = () => {
-    return isVertical ? "vertical" : "horizontal";
-  }
+  const orientation = () => isVertical ? "vertical" : "horizontal";
+  
 
-  ship.length = length;
- 
   /**
-   * Retrieves the length of the ship.
-   * @returns {number} The length of the ship.
-   */
+  * Retrieves the length of the ship.
+  * @returns {number} The length of the ship.
+  */
   const getLength = () => ship.length;
 
   /**
