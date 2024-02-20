@@ -1,31 +1,25 @@
-const createShip = require('../src/modules/ship');
+const Ship = require('../src/modules/ship');
 
 describe('Ship Methods', () => {
   let ship;
 
   beforeEach(() => {
-    ship = createShip();
+    ship = Ship("Destroyer", 2);
   });
 
   describe('Name Related Methods', () => {
-    test('setName and getName should work correctly', () => {
-      ship.setName("Destroyer");
+    test('getName should return the name of the ship', () => {
       expect(ship.getName()).toMatch("Destroyer");
     });  
   });
   
   describe('Length Related Methods', () => {
-    test('ship should have a setLength method', () => {
-      expect(ship.setLength).toBeDefined();
-    });
-
     test('ship should have a getLength method', () => {
       expect(ship.getLength).toBeDefined();
     });
     
-    test('setLength and getLength should work correctly', () => {
-      ship.setLength(5)
-      expect(ship.getLength()).toBe(5);
+    test('getLength should work correctly', () => {
+      expect(ship.getLength()).toBe(2);
     });
   });
 
