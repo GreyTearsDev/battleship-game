@@ -1,5 +1,3 @@
-import Ship from "./ship";
-
 function GameBoard() {
   let board = [
     [0,0,0,0,0,0,0,0,0,0],
