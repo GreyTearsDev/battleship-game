@@ -15,7 +15,7 @@ describe('Ship Methods', () => {
   
   describe('Length Related Methods', () => {
     test('ship should have a getLength method', () => {
-      expect(ship.getLength).toBeDefined();
+      expect(ship.getLength()).toBeDefined();
     });
     
     test('getLength should work correctly', () => {
@@ -39,7 +39,6 @@ describe('Ship Methods', () => {
     });
     
     test('ship should be sunk when hit enough times', () => {
-      ship.setLength(2);
       ship.hit();
       ship.hit();
       expect(ship.isSunk()).toBeTruthy();
