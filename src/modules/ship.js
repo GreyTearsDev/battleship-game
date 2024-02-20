@@ -18,8 +18,7 @@ const Ship = (shipName, length, isVertical) => {
    * @returns {string} The orientation of the ship: "vertical" or "horizontal".
    */ 
   const orientation = () => {
-   if (isVertical) return "vertical";
-   return "horizontal";
+    return isVertical ? "vertical" : "horizontal";
   }
 
   ship.length = length;
