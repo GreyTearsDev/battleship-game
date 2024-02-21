@@ -1,3 +1,5 @@
+import Ship from "./ship";
+
 function GameBoard() {
   let board = [
     [0,0,0,0,0,0,0,0,0,0],
@@ -11,6 +13,13 @@ function GameBoard() {
     [0,0,0,0,0,0,0,0,0,0], 
     [0,0,0,0,0,0,0,0,0,0],
   ];
+
+  const ships = {
+    carrier: Ship("carrier", 5, false),
+    battleship: Ship("battleship", 4, false),
+    cruiser: Ship("cruiser", 3, false),
+    destroyer: Ship("destroyer", 2, false),
+  }
 
 /**
  * Places a ship on the game board at the specified row and column.
