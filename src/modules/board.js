@@ -1,13 +1,12 @@
 'use strict';
 
-function GameBoard() {
+export function GameBoard() {
   const boardSize = 10; 
   const board = Array.from({ length: boardSize }, () => Array(boardSize).fill(0));
   const missedShots = new Set();
 
   const ships = [];
   
-
   /**
    * Places a ship on the game board at the specified row and column.
    * @param {Object} ship - The ship object to be placed on the board.
@@ -94,4 +93,3 @@ function GameBoard() {
   }
 }
 
-module.exports = GameBoard;

@@ -10,7 +10,7 @@ describe('Player Related Methods', () => {
   beforeEach(() => {
     player = Player();
     enemyPlayer = {
-      BOARD: {
+      gameboard: {
         receiveAttack: jest.fn(),
       },
     };
@@ -21,7 +21,7 @@ describe('Player Related Methods', () => {
     const col = 3;
 
     player.attack(enemyPlayer, row, col);
-    expect(enemyPlayer.BOARD.receiveAttack).toHaveBeenCalledWith(row, col);
+    expect(enemyPlayer.gameboard.receiveAttack).toHaveBeenCalledWith(row, col);
   
   });
 });
