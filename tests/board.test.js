@@ -64,9 +64,6 @@ describe('Gameboard Methods', () => {
       gameboard.receiveAttack(coor[0] - 3, coor[1]);
       const missedShots = gameboard.getMissedShots();
       expect(missedShots.size).toBeGreaterThan(0)
-    })
-  })
-
-
-  
-})
+    });
+  });
+});

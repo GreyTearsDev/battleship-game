@@ -7,6 +7,10 @@ describe('Ship Methods', () => {
     ship = Ship("Destroyer", 2);
   });
 
+  afterEach(() => {
+    ship = null;
+  });
+  
   describe('Name Related Methods', () => {
     test('getName should return the name of the ship', () => {
       expect(ship.getName()).toMatch("Destroyer");
