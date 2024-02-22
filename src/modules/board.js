@@ -2,27 +2,12 @@
 import Ship from "./ship";
 
 function GameBoard() {
-  let board = [
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0], 
-    [0,0,0,0,0,0,0,0,0,0],
-  ];
-
+  const boardSize = 10; 
+  const board = Array.from({ length: boardSize }, () => Array(boardSize).fill(0));
   const missedShots = new Set();
 
-  const ships = {
-    carrier: Ship("carrier", 5, false),
-    battleship: Ship("battleship", 4, false),
-    cruiser: Ship("cruiser", 3, false),
-    destroyer: Ship("destroyer", 2, false),
-  }
+  const ships = [];
+  
 
   /**
    * Places a ship on the game board at the specified row and column.
@@ -38,6 +23,7 @@ function GameBoard() {
         board[row++][col] = ship.lenght;
       }
     }
+    ships.push(ship)
   }
 
   /**
@@ -74,7 +60,7 @@ function GameBoard() {
     }
     
     const shipId = board[row][col];
-    for (let ship in ships) {
+    for (let ship of ships) {
       if (ship.length === shipId) {
         ship.hit()
       }
