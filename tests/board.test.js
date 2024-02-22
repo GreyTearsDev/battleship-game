@@ -23,6 +23,10 @@ describe('Gameboard Methods', () => {
     };
     Ship.mockReturnValue(ship)
   
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   })
 
   test('placeShip should be able to place ships at specific coordinates', () => {
