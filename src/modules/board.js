@@ -14,6 +14,8 @@ function GameBoard() {
     [0,0,0,0,0,0,0,0,0,0],
   ];
 
+  const missedShots = new Set();
+
   const ships = {
     carrier: Ship("carrier", 5, false),
     battleship: Ship("battleship", 4, false),
@@ -58,10 +60,29 @@ function GameBoard() {
     }
   }
   
+  const receiveAttack = (row, col) => {
+    if (board[row][col] === 0) {
+      missedShots.add([row,col].toString());
+      return false;
+    }
+    
+    const shipId = board[row][col];
+    for (let ship in ships) {
+      if (ship.length === shipId) {
+        ship.hit()
+      }
+    }
+    return true
+  }
+
+  const getMissedShots = () => missedShots;
+  
   return {
     placeShip,
     getBoard,
-    isLegal
+    isLegal,
+    receiveAttack, 
+    getMissedShots,
   }
 }
 
