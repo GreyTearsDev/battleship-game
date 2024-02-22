@@ -1,5 +1,4 @@
 'use strict';
-import Ship from "./ship";
 
 function GameBoard() {
   const boardSize = 10; 
