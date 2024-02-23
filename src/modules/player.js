@@ -1,5 +1,5 @@
 'use strict'
- import gameboard from '../modules/board';
+ import Gameboard from '../modules/board';
 
 /**
  * Represents a player in the game.
@@ -11,7 +11,7 @@ export function Player() {
    * The game board of the player.
    * @type {Object}
    */
-  const BOARD = gameboard();
+  const gameboard = Gameboard();
   const usedCoordinates = new Set();
    /**
    * Attacks the enemy player's game board at the specified row and column.
@@ -20,11 +20,11 @@ export function Player() {
    * @param {number} col - The column index of the attack.
    */
    const attack = (enemyPlayer, row, col) => {
-     enemyPlayer.BOARD.receiveAttack(row, col)
+     enemyPlayer.gameboard.receiveAttack(row, col)
    };
 
    return {
-    BOARD,
+    gameboard,
     usedCoordinates,
     attack,
    }
