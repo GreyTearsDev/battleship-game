@@ -11,7 +11,11 @@ export function getGridCell(row, col) {
   return document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
 }
 
-
+/**
+ * Retrieves DOM elements representing ships on the gameboard for a given player.
+ * @param {Player} player - The player whose gameboard's ship DOM elements are to be retrieved.
+ * @returns {Element[]} An array of DOM elements representing the ships on the player's gameboard.
+ */
 export function getShipDOMElements(player) {
   let shipDOMElements = []
   const shipsCoordinates = player.gameboard.shipCoordinates;
