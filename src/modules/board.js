@@ -6,6 +6,7 @@ export default function GameBoard() {
   const missedShots = new Set();
 
   const ships = [];
+  const shipsCoordinates = [];
   
   /**
    * Places a ship on the game board at the specified row and column.
@@ -20,6 +21,7 @@ export default function GameBoard() {
       } else {
         board[row++][col] = ship.getLength();
       }
+      shipsCoordinates.push(`${row}, ${col}`)
     }
     ships.push(ship)
   }
@@ -85,6 +87,7 @@ export default function GameBoard() {
   
   return {
     placeShip,
+    shipsCoordinates,
     getBoard,
     isLegal,
     receiveAttack, 
