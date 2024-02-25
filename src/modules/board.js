@@ -14,11 +14,11 @@ export default function GameBoard() {
    * @param {number} col - The column index where the ship will be placed.
    */
   const placeShip = (ship, row, col) => {
-    for (let i = 0; i < ship.length; i++) {
-      if (ship.orientation() === "horizontal") {
-        board[row][col++] = ship.length;
+    for (let i = 0; i < ship.getLength(); i++) {
+      if (ship.getOrientation() === "horizontal") {
+        board[row][col++] = ship.getLength();
       } else {
-        board[row++][col] = ship.lenght;
+        board[row++][col] = ship.getLength();
       }
     }
     ships.push(ship)
@@ -38,10 +38,10 @@ export default function GameBoard() {
    * @returns {boolean} True if placing the ship is legal, otherwise false.
    */
   const isLegal = (ship, row, col) => {
-    if (ship.orientation() === "horizontal") {
-      return ship.length + col < board[row].length;
+    if (ship.getOrientation() === "horizontal") {
+      return ship.getLength() + col < board[row].length;
     } else {
-      return ship.length + row < board.length;
+      return ship.getLength() + row < board.length;
     }
   }
   
