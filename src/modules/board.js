@@ -4,7 +4,6 @@ export default function GameBoard() {
   const boardSize = 10; 
   const board = Array.from({ length: boardSize }, () => Array(boardSize).fill(0));
   const missedShots = new Set();
-
   const ships = [];
   const shipsCoordinates = [];
   
