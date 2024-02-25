@@ -15,6 +15,8 @@ export default function GameBoard() {
    * @param {number} col - The column index where the ship will be placed.
    */
   const placeShip = (ship, row, col) => {
+    if (!isLegal(ship, row, col)) return false;
+
     for (let i = 0; i < ship.getLength(); i++) {
       if (ship.getOrientation() === "horizontal") {
         board[row][col++] = ship.getLength();
@@ -23,7 +25,9 @@ export default function GameBoard() {
       }
       shipsCoordinates.push(`${row},${col}`)
     }
-    ships.push(ship)
+    ships.push(ship);
+    return true;
+    
   }
 
   /**
