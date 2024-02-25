@@ -65,3 +65,16 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 3rem;
 }
+
+.ship {
+  background-color: lightgreen;
+}
+
+.ship--active {
+}
+
+.ship--hit {
+}
+
+.ship--sunk {
+}
