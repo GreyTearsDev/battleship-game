@@ -14,15 +14,16 @@ export function getGridCell(playerID, row, col) {
 
 /**
  * Retrieves DOM elements representing ships on the gameboard for a given player.
+ * @param {string} playerID - The ID of the player whose gameboard's ship DOM elements are to be retrieved.
  * @param {Player} player - The player whose gameboard's ship DOM elements are to be retrieved.
  * @returns {Element[]} An array of DOM elements representing the ships on the player's gameboard.
  */
-export function getShipDOMElements(player) {
+export function getShipDOMElements(playerID, player) {
   let shipDOMElements = []
   const shipsCoordinates = player.gameboard.shipsCoordinates;
   for (let coordinate of shipsCoordinates) {
     let [row, col] = coordinate.split(',');
-    shipDOMElements.push(getGridCell(row, col));
+    shipDOMElements.push(getGridCell(playerID, row, col));
   }
 
   return shipDOMElements;
