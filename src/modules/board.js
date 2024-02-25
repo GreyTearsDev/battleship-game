@@ -44,6 +44,7 @@ export default function GameBoard() {
    * @returns {boolean} True if placing the ship is legal, otherwise false.
    */
   const isLegal = (ship, row, col) => {
+    if (board[row][col] !== 0) return false;
     if (ship.getOrientation() === "horizontal") {
       return ship.getLength() + col < board[row].length;
     } else {
