@@ -8,7 +8,7 @@
  * @returns {Object} A ship object with methods for setting length, getting length,
  *                   recording hits, counting hits, and determining if the ship is sunk.
  */ 
-const Ship = (shipName, length, isVertical) => {
+const Ship = (shipName, length, isVertical = false) => {
   const ship = [];
   ship.length = length;
   const name = shipName;
