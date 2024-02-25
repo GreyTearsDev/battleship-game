@@ -59,6 +59,6 @@ export function AIPlayer(player) {
   return {
     gameboard,
     attack,
-    placeShip
+    // placeShip
   }
 }
