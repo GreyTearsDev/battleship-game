@@ -4,22 +4,31 @@
  * Creates a ship object with methods to manage its properties and state.
  * @param {string} shipName - The name of the ship.
  * @param {number} length - The length of the ship.
- * @param {boolean} isVertical - Indicates whether the ship is oriented vertically.
  * @returns {Object} A ship object with methods for setting length, getting length,
  *                   recording hits, counting hits, and determining if the ship is sunk.
  */ 
-const Ship = (shipName, length, isVertical = false) => {
+const Ship = (shipName, length) => {
   const ship = [];
   ship.length = length;
   const name = shipName;
   let damage = 0;
+  let orientation = false;
 
- /**
+   /**
+   * switches the orientation of the ship.
+   */ 
+  const switchOrientation = () => {
+    orientation = !orientation;
+  } 
+   /**
+   *
    * Retrieves the orientation of the ship.
    * @returns {string} The orientation of the ship: "vertical" or "horizontal".
-   */ 
-  const orientation = () => isVertical ? "vertical" : "horizontal";
-  
+   */
+  const getOrientation = () => {
+    if (orientation) return "vertical";   
+    return "horizontal";
+ } 
 
   /**
   * Retrieves the length of the ship.
@@ -52,7 +61,8 @@ const Ship = (shipName, length, isVertical = false) => {
 
   // expose public mthods
   return {
-    orientation,
+    switchOrientation,
+    getOrientation,
     getLength,
     hit,
     hitCount,
