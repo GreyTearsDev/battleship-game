@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1rem;
+}
+
 body {
   border: 2px solid red;
   display: grid;
@@ -17,13 +22,18 @@ body {
   background-color: red;
   bottom: 0;
   position: fixed;
+  text-align: center;
   width: 100%;
+}
+
+.copyright > a {
+  color: green;
 }
 
 .game-screen {
   align-items: center;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   justify-content: center;
 }
 
@@ -31,15 +41,18 @@ body {
   align-items: center;
   border: 1px solid green;
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   gap: 1vh;
+  height: 100vh;
+  justify-content: center;
 }
 
 .player__board {
   border: 2px solid blue;
   display: grid;
-  grid-template-columns: repeat(10, 40px);
-  grid-template-rows: repeat(10, 40px);
+  grid-template-columns: repeat(10, minmax(10px, 40px));
+  grid-template-rows: repeat(10, minmax(10px, 40px));
   justify-content: center;
 }
 
