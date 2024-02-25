@@ -18,11 +18,12 @@ export default function GameBoard() {
 
     for (let i = 0; i < ship.getLength(); i++) {
       if (ship.getOrientation() === "horizontal") {
+        shipsCoordinates.push(`${row},${col}`)
         board[row][col++] = ship.getLength();
       } else {
+        shipsCoordinates.push(`${row},${col}`)
         board[row++][col] = ship.getLength();
       }
-      shipsCoordinates.push(`${row},${col}`)
     }
     ships.push(ship);
     return true;
