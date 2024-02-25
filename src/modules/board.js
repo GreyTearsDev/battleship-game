@@ -21,7 +21,7 @@ export default function GameBoard() {
       } else {
         board[row++][col] = ship.getLength();
       }
-      shipsCoordinates.push(`${row}, ${col}`)
+      shipsCoordinates.push(`${row},${col}`)
     }
     ships.push(ship)
   }
