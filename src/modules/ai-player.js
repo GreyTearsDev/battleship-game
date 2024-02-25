@@ -17,7 +17,7 @@ export function AIPlayer(player) {
    * Generates random attack coordinates.
    * @returns {Array} An array containing the row and column indices of the attack.
    */
-  const getAttackCoordinates = () => {
+  const getRandomCoordinates = () => {
     let coordinates = [];
     coordinates.push(getRandomInt(10));
     coordinates.push(getRandomInt(10));
@@ -30,7 +30,7 @@ export function AIPlayer(player) {
    * @returns {boolean} True if the attack was successful, false if the coordinates were already used.
    */
   const attack = (enemyPlayer) => {
-    let coordinates = getAttackCoordinates();
+    let coordinates = getRandomCoordinates();
 
     if (!player.usedCoordinates.has(coordinates)) {
       let [row, col] = coordinates;
@@ -41,8 +41,24 @@ export function AIPlayer(player) {
     return false;
   }
 
+  // const placeShip = (ships) => {
+  //   let [row, col] = getRandomCoordinates();
+
+  //   for (let ship in ships) {
+  //     while (!gameboard.isLegal(ship, row, col)) {
+  //       [row, col] = getRandomCoordinates();
+  //     }
+
+  //     let board = gameboard.getBoard();
+  //     if (board[row][col] === 0) {
+  //       player.placeShip(ship, row, col);
+  //     } 
+  //   }
+  // };
+
   return {
     gameboard,
     attack,
+    placeShip
   }
 }
