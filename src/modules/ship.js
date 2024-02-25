@@ -8,8 +8,6 @@
  *                   recording hits, counting hits, and determining if the ship is sunk.
  */ 
 const Ship = (shipName, length) => {
-  const ship = [];
-  ship.length = length;
   const name = shipName;
   let damage = 0;
   let orientation = false;
@@ -34,7 +32,7 @@ const Ship = (shipName, length) => {
   * Retrieves the length of the ship.
   * @returns {number} The length of the ship.
   */
-  const getLength = () => ship.length;
+  const getLength = () => length;
 
   /**
    * Retrieves the count of hits on the ship.
