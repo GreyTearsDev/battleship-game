@@ -18,8 +18,7 @@ export function getGridCell(row, col) {
  */
 export function getShipDOMElements(player) {
   let shipDOMElements = []
-  const shipsCoordinates = player.gameboard.shipCoordinates;
-
+  const shipsCoordinates = player.gameboard.shipsCoordinates;
   for (let coordinate of shipsCoordinates) {
     let [row, col] = coordinate.split(',');
     shipDOMElements.push(getGridCell(row, col));
