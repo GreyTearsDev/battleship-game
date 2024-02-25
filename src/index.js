@@ -14,23 +14,20 @@ import Ship from './modules/ship'
   const player = Player();
   const computer = AIPlayer(Player());
 
-  console.log(player);
-  console.log(computer);
-  console.log(ships);
   let row = 0;
   let col = 0;
   for (let ship in ships) {
     ship = ships[ship]
     player.gameboard.placeShip(ship, row++, col++);
   }
+  row = 0;
+  col = 0;
+  for (let ship in ships) {
+    ship = ships[ship]
+    computer.gameboard.placeShip(ship, row++, col++)
+  }
   console.log(player.gameboard.getBoard())
-
-
-
-
+  console.log(computer.gameboard.getBoard())
   
-  console.log(player);
-  console.log(computer);
-  console.log(ships);
 })();
 
