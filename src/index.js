@@ -22,12 +22,9 @@ import { renderShipGridCell } from './modules/dom/render-ships';
     player.gameboard.placeShip(ship, row++, col++);
   }
 
-  row = 0;
-  col = 0;
-  for (let ship in ships) {
-    ship = ships[ship]
-    computer.gameboard.placeShip(ship, row++, col++)
-  }
+  
+  computer.placeShip(ships, row++, col++)
+  
 
   let DOMElements = getShipDOMElements("player", player);
 

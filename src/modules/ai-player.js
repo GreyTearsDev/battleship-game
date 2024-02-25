@@ -24,6 +24,7 @@ export function AIPlayer(player) {
     return coordinates;
   } 
   
+ 
    /**
    * Attacks the enemy player's game board with random coordinates.
    * @param {Object} enemyPlayer - The enemy player object.
@@ -41,24 +42,26 @@ export function AIPlayer(player) {
     return false;
   }
 
-  // const placeShip = (ships) => {
-  //   let [row, col] = getRandomCoordinates();
+// TODO: find out why some ships end up verlaping
+  const placeShip = (ships) => {
+    let [row, col] = getRandomCoordinates();
+      
+    for (let ship in ships) {
+      ship = ships[ship]
+      // Randomly change the orientation of the ships
 
-  //   for (let ship in ships) {
-  //     while (!gameboard.isLegal(ship, row, col)) {
-  //       [row, col] = getRandomCoordinates();
-  //     }
-
-  //     let board = gameboard.getBoard();
-  //     if (board[row][col] === 0) {
-  //       player.placeShip(ship, row, col);
-  //     } 
-  //   }
-  // };
+      while (!gameboard.isLegal(ship, row, col)) {
+        if (Math.random() >= 0.5) ship.switchOrientation();
+        [row, col] = getRandomCoordinates();
+      }
+     
+      player.gameboard.placeShip(ship, row, col)
+    }
+  };
 
   return {
     gameboard,
     attack,
-    // placeShip
+    placeShip
   }
 }
