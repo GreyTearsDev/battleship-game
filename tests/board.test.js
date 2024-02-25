@@ -16,7 +16,7 @@ describe('Gameboard Methods', () => {
       name: "destroyer",
       length: 4, 
       damage: 0,
-      orientation: jest.fn(() => "horizontal"),
+      getOrientation: jest.fn(() => "horizontal"),
       hit: jest.fn(() => ++ship.damage),
       hitCount: jest.fn(() => ship.damage),
       getLength: jest.fn(() => ship.length)
