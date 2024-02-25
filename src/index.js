@@ -2,7 +2,8 @@ import './styles.css';
 import { Player } from './modules/player';
 import { AIPlayer } from './modules/ai-player';
 import Ship from './modules/ship'
-
+import { getShipDOMElements } from './utilities/dom-grid'
+import { renderShipGridCell } from './modules/dom/render-ships';
 
 (function () {
   const ships = {
@@ -20,14 +21,25 @@ import Ship from './modules/ship'
     ship = ships[ship]
     player.gameboard.placeShip(ship, row++, col++);
   }
+
   row = 0;
   col = 0;
   for (let ship in ships) {
     ship = ships[ship]
     computer.gameboard.placeShip(ship, row++, col++)
   }
-  console.log(player.gameboard.getBoard())
-  console.log(computer.gameboard.getBoard())
+
+  let DOMElements = getShipDOMElements("player", player);
+
+  for (let cell of DOMElements) {
+    renderShipGridCell(cell, "ship")
+  }
+  
+  let DOMElements2 = getShipDOMElements("computer", computer);
+
+  for (let cell of DOMElements2) {
+    renderShipGridCell(cell, "ship")
+  }
   
 })();
 

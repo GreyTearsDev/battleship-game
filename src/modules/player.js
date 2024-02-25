@@ -12,6 +12,7 @@ export function Player() {
    * @type {Object}
    */
   const gameboard = Gameboard();
+
   const usedCoordinates = new Set();
    /**
    * Attacks the enemy player's game board at the specified row and column.
