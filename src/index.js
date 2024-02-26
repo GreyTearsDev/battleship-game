@@ -2,7 +2,7 @@ import './styles.css';
 import { Player } from './modules/player';
 import { AIPlayer } from './modules/ai-player';
 import Ship from './modules/ship'
-import { getShipDOMElements } from './utilities/dom-grid'
+import { getShipDOMElements, getAllDOMGameboardCells } from './utilities/dom-grid'
 import { renderShipGridCell } from './modules/dom/render-ships';
 
 (function () {
@@ -31,6 +31,17 @@ import { renderShipGridCell } from './modules/dom/render-ships';
   
   playerDOMElements.forEach((cell) => renderShipGridCell(cell, "ship"))
   computerDOMElements.forEach((cell) => renderShipGridCell(cell, "ship"))
+
+  let computerGridCells = getAllDOMGameboardCells("computer");  
+  console.log(computerGridCells)
+  computerGridCells.forEach((cell) => {
+    cell.addEventListener("click", function(){
+      let row = cell.dataset.row;
+      let col = cell.dataset.col;
+      console.log(row,col)
+      player.attack(computer, row, col);
+    });
+  })
 
   console.log(player.gameboard.getBoard())
   console.log(computer.gameboard.getBoard())
