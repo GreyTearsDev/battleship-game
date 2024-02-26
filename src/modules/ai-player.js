@@ -42,19 +42,22 @@ export function AIPlayer(player) {
     return false;
   }
 
-// TODO: find out why some ships end up verlaping
+  /**
+   * Randomly places ships on the game board.
+   * @param {Object[]} ships - An array of ship objects to be placed on the board.
+   */
   const placeShip = (ships) => {
     let [row, col] = getRandomCoordinates();
       
     for (let ship in ships) {
       ship = ships[ship]
-      // Randomly change the orientation of the ships
-
+      // Continue until legal position on the ship is found
       while (!gameboard.isLegal(ship, row, col)) {
+        // Randomly change the orientation of the ship
         if (Math.random() >= 0.5) ship.switchOrientation();
+        // Get new random coordinates
         [row, col] = getRandomCoordinates();
       }
-     
       player.gameboard.placeShip(ship, row, col)
     }
   };
