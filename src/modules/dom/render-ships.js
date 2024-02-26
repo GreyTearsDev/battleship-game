@@ -1,4 +1,5 @@
 'use strict'
+import { setClass } from "../../utilities/dom";
 
 /**
  * Renders a ship grid cell by adding a specified CSS class to its classList.
@@ -6,5 +7,5 @@
  * @param {string} CSSclass - The CSS class to be added to the cell's classList.
  */
 export function renderShipGridCell(cell, CSSclass) {
-  cell.classList.add(`${CSSclass}`);
+  setClass(cell, CSSclass);
 }
