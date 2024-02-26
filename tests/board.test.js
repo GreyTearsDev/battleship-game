@@ -49,12 +49,14 @@ describe('Gameboard Methods', () => {
       gameboard.placeShip(ship, coor[0], coor[1]);
     })
     
-    test("should determine if the attack hit a ship or not", () => {
-      // expect(gameboard.receiveAttack(coor[0], coor[1])).toBeTruthy()
-      // expect(gameboard.receiveAttack(coor[0] - 1, coor[1])).toBeFalsy()
+    test("should determine if the attack hit a ship", () => {
       gameboard.receiveAttack(coor[0], coor[1]);
       expect(gameboard.getBoard()[coor[0]][coor[1]]).toBe(0);
     });
+
+    test("should determine if the attack has missed", () => {
+      expect(gameboard.receiveAttack(coor[0] - 1, coor[1])).toBeFalsy()
+    })
 
     test("should send the 'hit' function to the correct ship", () => {
       gameboard.receiveAttack(coor[0], coor[1]);
