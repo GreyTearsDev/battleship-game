@@ -28,3 +28,14 @@ export function getShipDOMElements(playerID, player) {
 
   return shipDOMElements;
 }
+
+
+/**
+ * Retrieves all DOM elements representing gameboard cells associated with a specific player.
+ * These cells are identified by the specified playerID attribute.
+ * @param {string} playerID - The ID of the player whose gameboard cells are to be retrieved.
+ * @returns {NodeList} A NodeList containing all DOM elements that match the specified playerID attribute.
+ */
+export function getAllDOMGameboardCells(playerID) {
+  return document.querySelectorAll(`[data-playerID="${playerID}"]`);
+}
