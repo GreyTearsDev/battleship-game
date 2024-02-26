@@ -2,7 +2,7 @@ import './styles.css';
 import { Player } from './modules/player';
 import { AIPlayer } from './modules/ai-player';
 import Ship from './modules/ship'
-import { getShipDOMElements, getAllDOMGameboardCells } from './utilities/dom-grid'
+import { getShipDOMElements, getAllDOMGameboardCells } from './utilities/dom'
 import { renderShipGridCell } from './modules/dom/render-ships';
 
 (function () {
@@ -40,9 +40,22 @@ import { renderShipGridCell } from './modules/dom/render-ships';
       let col = cell.dataset.col;
       console.log(row,col)
       player.attack(computer, row, col);
+      console.log(computer.gameboard.getBoard())
+      if (player.gameboard.allShipsSunk() || computer.gameboard.allShipsSunk()) {
+        // show winner
+        if (player.gameboard.allShipsSunk) {
+          console.log("You've won");
+        } else {
+          console.log("computer won")
+        }
+        console.log("someone died")
+      }
     });
   })
 
+  // while (!player.gameboard.allShipsSunk() || !computer.gameboard.allShipsSunk()) {
+    
+  // }
   console.log(player.gameboard.getBoard())
   console.log(computer.gameboard.getBoard())
   
