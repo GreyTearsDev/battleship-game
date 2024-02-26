@@ -46,7 +46,7 @@ export function AIPlayer(player) {
    * Randomly places ships on the game board.
    * @param {Object[]} ships - An array of ship objects to be placed on the board.
    */
-  const placeShip = (ships) => {
+  const placeShipRandomly = (ships) => {
     let [row, col] = getRandomCoordinates();
       
     for (let ship in ships) {
@@ -65,6 +65,6 @@ export function AIPlayer(player) {
   return {
     gameboard,
     attack,
-    placeShip
+    placeShipRandomly
   }
 }
