@@ -28,18 +28,18 @@ export function AIPlayer(player) {
    /**
    * Attacks the enemy player's game board with random coordinates.
    * @param {Object} enemyPlayer - The enemy player object.
-   * @returns {boolean} True if the attack was successful, false if the coordinates were already used.
    */
   const attack = (enemyPlayer) => {
     let coordinates = getRandomCoordinates();
 
-    if (!player.usedCoordinates.has(coordinates)) {
-      let [row, col] = coordinates;
-      player.attack(enemyPlayer, row, col);
-      player.usedCoordinates.add(coordinates);
-      return true;
+    while (player.usedCoordinates.has(coordinates)) {
+      coordinates = getRandomCoordinates();
     }
-    return false;
+    
+    let [row, col] = coordinates;
+    player.attack(enemyPlayer, row, col);
+    player.usedCoordinates.add(coordinates);
+    return true
   }
 
   /**
