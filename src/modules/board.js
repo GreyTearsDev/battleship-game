@@ -14,6 +14,7 @@ export default function GameBoard() {
    * @param {number} col - The column index where the ship will be placed.
    */
   const placeShip = (ship, row, col) => {
+    // check if provided coordinates are legal
     if (!isLegal(ship, row, col)) return false;
 
     for (let i = 0; i < ship.getLength(); i++) {
@@ -44,12 +45,27 @@ export default function GameBoard() {
    * @returns {boolean} True if placing the ship is legal, otherwise false.
    */
   const isLegal = (ship, row, col) => {
-    if (board[row][col] !== 0) return false;
     if (ship.getOrientation() === "horizontal") {
-      return ship.getLength() + col < board[row].length;
-    } else {
-      return ship.getLength() + row < board.length;
-    }
+      // Check if there is enough space horizontally to place the ship
+      if (!(ship.getLength() + col <= board[row].length)) return false;
+  
+      for (let i = 0; i < ship.getLength(); i++) {
+        // Check if the coordinates in the path aren't already occupied
+        if (board[row][col++] !== 0) return false;
+      }
+      return true;
+    } 
+    
+    if (ship.getOrientation() === "vertical") {
+      // Check if there is enough space vertically to place the ship
+      if (!(ship.getLength() + row <= board.length)) return false;
+  
+      for (let i = 0; i < ship.getLength(); i++) {
+        // Check if the coordinates in the path aren't already occupied
+        if (board[row++][col] !== 0) return false;
+      }
+      return true;
+    } 
   }
   
   /**
