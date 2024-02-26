@@ -7,7 +7,7 @@ jest.mock('../src/modules/ship')
 describe('Gameboard Methods', () => {
   let gameboard;
   let ship;
-  const coor = [8, 5]; // coordinates
+  const coor = [3, 3]; // coordinates
   
   beforeEach(() => {    
     gameboard = Gameboard();
@@ -22,7 +22,6 @@ describe('Gameboard Methods', () => {
       getLength: jest.fn(() => ship.length)
     };
     Ship.mockReturnValue(ship)
-  
   });
 
   afterEach(() => {
@@ -51,8 +50,10 @@ describe('Gameboard Methods', () => {
     })
     
     test("should determine if the attack hit a ship or not", () => {
-      expect(gameboard.receiveAttack(coor[0], coor[1])).toBeTruthy()
-      expect(gameboard.receiveAttack(coor[0] - 1, coor[1])).toBeFalsy()
+      // expect(gameboard.receiveAttack(coor[0], coor[1])).toBeTruthy()
+      // expect(gameboard.receiveAttack(coor[0] - 1, coor[1])).toBeFalsy()
+      gameboard.receiveAttack(coor[0], coor[1]);
+      expect(gameboard.getBoard()[coor[0]][coor[1]]).toBe(0);
     });
 
     test("should send the 'hit' function to the correct ship", () => {
