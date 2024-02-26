@@ -17,26 +17,23 @@ import { renderShipGridCell } from './modules/dom/render-ships';
 
   let row = 0;
   let col = 0;
+  
+  // Place the ships on the board
   for (let ship in ships) {
     ship = ships[ship]
     player.gameboard.placeShip(ship, row++, col++);
   }
+  computer.placeShipRandomly(ships)
 
+  // Render the ships on the board
+  let playerDOMElements = getShipDOMElements("player", player);
+  let computerDOMElements = getShipDOMElements("computer", computer);
   
-  computer.placeShip(ships, row++, col++)
-  
+  playerDOMElements.forEach((cell) => renderShipGridCell(cell, "ship"))
+  computerDOMElements.forEach((cell) => renderShipGridCell(cell, "ship"))
 
-  let DOMElements = getShipDOMElements("player", player);
-
-  for (let cell of DOMElements) {
-    renderShipGridCell(cell, "ship")
-  }
-  
-  let DOMElements2 = getShipDOMElements("computer", computer);
-
-  for (let cell of DOMElements2) {
-    renderShipGridCell(cell, "ship")
-  }
+  console.log(player.gameboard.getBoard())
+  console.log(computer.gameboard.getBoard())
   
 })();
 
