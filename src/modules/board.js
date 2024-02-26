@@ -28,7 +28,6 @@ export default function GameBoard() {
     }
     ships.push(ship);
     return true;
-    
   }
 
   /**
@@ -86,7 +85,7 @@ export default function GameBoard() {
         ship.hit()
       }
     }
-    return true
+    return true;
   }
 
   /**
@@ -101,7 +100,7 @@ export default function GameBoard() {
    */
   const allShipsSunk = () => {
     for (let ship in ships) {
-      if (!ship.isSunk()) return false;
+      if (!ships[ship].isSunk()) return false;
     }
     return true;
   }
