@@ -81,10 +81,11 @@ export default function GameBoard() {
     
     const shipId = board[row][col];
     for (let ship of ships) {
-      if (ship.length === shipId) {
-        ship.hit()
+      if (ship.getLength() === shipId) {
+        ship.hit();
       }
     }
+    board[row][col] = 0;
     return true;
   }
 
