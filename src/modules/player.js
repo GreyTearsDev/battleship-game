@@ -16,6 +16,7 @@ export function Player(playerName) {
   const name = playerName;
 
   const usedCoordinates = new Set();
+
    /**
    * Attacks the enemy player's game board at the specified row and column.
    * @param {Object} enemyPlayer - The enemy player object.
@@ -26,6 +27,11 @@ export function Player(playerName) {
      enemyPlayer.gameboard.receiveAttack(row, col);
    };
 
+   /**
+   * Returns the name of the player.
+   * @return {string} name - The name of the player.
+   */
+   const getName = () => name;  
 
    return {
     gameboard,
