@@ -3,6 +3,7 @@ import { Player } from '../src/modules/player';
 import getRandomInt from '../src/utilities/random-int';
 
 jest.mock('../src/utilities/random-int');
+jest.useFakeTimers();
 
 describe('AIPlayer', () => {
   let aiPlayer;
@@ -22,7 +23,13 @@ describe('AIPlayer', () => {
     getRandomInt.mockReturnValueOnce(3);
     getRandomInt.mockReturnValueOnce(5);
     aiPlayer.attack(enemyPlayerMock);
-    expect(playerMock.attack).toHaveBeenCalledWith(enemyPlayerMock, 3, 5)
+
+    // Ensure that playerMock.attack is called with the correct arguments
+    expect(playerMock.attack).not.toHaveBeenCalled()
+    // Advance timers to execute the attack
+    jest.advanceTimersByTime(200);
+    // Check if the attack is made
+    expect(playerMock.attack).toHaveBeenCalledWith(enemyPlayerMock, 3, 5);
   });
 
   test('gameboard property should return the correct gameboard object', () => {
