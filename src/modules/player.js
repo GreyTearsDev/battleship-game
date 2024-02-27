@@ -22,9 +22,10 @@ export function Player(playerName) {
    * @param {Object} enemyPlayer - The enemy player object.
    * @param {number} row - The row index of the attack.
    * @param {number} col - The column index of the attack.
+   * @return {boolean} True if the attack is successful, false otherwise.
    */
    const attack = (enemyPlayer, row, col) => {
-     enemyPlayer.gameboard.receiveAttack(row, col);
+     return enemyPlayer.gameboard.receiveAttack(row, col);
    };
 
    /**
