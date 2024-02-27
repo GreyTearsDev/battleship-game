@@ -30,16 +30,20 @@ export function AIPlayer(player) {
    * @param {Object} enemyPlayer - The enemy player object.
    */
   const attack = (enemyPlayer) => {
-    let coordinates = getRandomCoordinates();
+    return new Promise((resolve, reject) => {
+      let coordinates = getRandomCoordinates();
 
-    while (player.usedCoordinates.has(coordinates)) {
-      coordinates = getRandomCoordinates();
-    }
+      while (player.usedCoordinates.has(coordinates)) {
+        coordinates = getRandomCoordinates();
+      }
     
-    let [row, col] = coordinates;
-    player.attack(enemyPlayer, row, col);
-    player.usedCoordinates.add(coordinates);
-    return true
+      let [row, col] = coordinates;
+      setTimeout(() => {
+        player.attack(enemyPlayer, row, col);
+        player.usedCoordinates.add(coordinates);
+        resolve(true);
+      }, 200);
+    });
   }
 
   /**
