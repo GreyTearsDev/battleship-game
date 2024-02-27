@@ -4,14 +4,16 @@
 /**
  * Represents a player in the game.
  * @constructor
+ * @param {string} playerName - The name of the player. 
  * @returns {Object} An object representing a player.
  */
-export function Player() {
+export function Player(playerName) {
   /**
    * The game board of the player.
    * @type {Object}
    */
   const gameboard = Gameboard();
+  const name = playerName;
 
   const usedCoordinates = new Set();
    /**
@@ -21,12 +23,14 @@ export function Player() {
    * @param {number} col - The column index of the attack.
    */
    const attack = (enemyPlayer, row, col) => {
-     enemyPlayer.gameboard.receiveAttack(row, col)
+     enemyPlayer.gameboard.receiveAttack(row, col);
    };
+
 
    return {
     gameboard,
     usedCoordinates,
     attack,
+    getName,
    }
 }
