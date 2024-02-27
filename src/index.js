@@ -3,7 +3,7 @@ import { Player } from './modules/player';
 import { AIPlayer } from './modules/ai-player';
 import Ship from './modules/ship'
 import { getShipDOMElements, getAllDOMGameboardCells } from './utilities/dom'
-import { renderShipGridCell } from './modules/dom/render-ships';
+import { renderShipsOnBoard } from './modules/dom/render-ships';
 
 (function () {
   const ships = {
@@ -11,7 +11,7 @@ import { renderShipGridCell } from './modules/dom/render-ships';
     battleship: Ship('Battleship', 4),
     cruiser: Ship('Cruiser', 3),
     destroyer: Ship('Destroyer', 2)
-  }
+  };
   const player = Player();
   const computer = AIPlayer(Player());
 
@@ -25,22 +25,20 @@ import { renderShipGridCell } from './modules/dom/render-ships';
   }
   computer.placeShipRandomly(ships)
 
-  // Render the ships on the board
-  let playerDOMElements = getShipDOMElements("player", player);
-  let computerDOMElements = getShipDOMElements("computer", computer);
-  
-  playerDOMElements.forEach((cell) => renderShipGridCell(cell, "ship"))
-  computerDOMElements.forEach((cell) => renderShipGridCell(cell, "ship"))
+  renderShipsOnBoard(player, computer);
 
   let computerGridCells = getAllDOMGameboardCells("computer");  
-  console.log(computerGridCells)
+
   computerGridCells.forEach((cell) => {
     cell.addEventListener("click", function(){
       let row = cell.dataset.row;
       let col = cell.dataset.col;
-      console.log(row,col)
       player.attack(computer, row, col);
-      console.log(computer.gameboard.getBoard())
+
+      setTimeout(() => {
+        computer.attack(player)
+      }, 200);
+
       if (player.gameboard.allShipsSunk() || computer.gameboard.allShipsSunk()) {
         // show winner
         if (player.gameboard.allShipsSunk) {
@@ -52,12 +50,5 @@ import { renderShipGridCell } from './modules/dom/render-ships';
       }
     });
   })
-
-  // while (!player.gameboard.allShipsSunk() || !computer.gameboard.allShipsSunk()) {
-    
-  // }
-  console.log(player.gameboard.getBoard())
-  console.log(computer.gameboard.getBoard())
-  
 })();
 
