@@ -1,11 +1,18 @@
 'use strict'
-import { setClass } from "../../utilities/dom";
+import { setClass, getShipDOMElements } from "../../utilities/dom";
 
 /**
- * Renders a ship grid cell by adding a specified CSS class to its classList.
- * @param {HTMLElement} cell - The DOM element representing a ship grid cell.
- * @param {string} CSSclass - The CSS class to be added to the cell's classList.
+ * Renders the ships on the game board for both the player and the computer.
+ * This function retrieves DOM elements representing the ships for each player,
+ * applies the "ship" CSS class to each element, and renders them on the board.
+ * @param {object} player - The player object containing ship information.
+ * @param {object} computer - The computer object containing ship information.
  */
-export function renderShipGridCell(cell, CSSclass) {
-  setClass(cell, CSSclass);
+export function renderShipsOnBoard(player, computer) {
+  // Render the ships on the board
+  let playerDOMElements = getShipDOMElements("player", player);
+  let computerDOMElements = getShipDOMElements("computer", computer);
+  
+  playerDOMElements.forEach((cell) => setClass(cell, "ship"))
+  computerDOMElements.forEach((cell) => setClass(cell, "ship"))
 }
