@@ -43,7 +43,7 @@ const Ship = (shipName, length) => {
   /**
    * Records a hit on the ship.
    */
-  const hit = () => ++damage;
+  const hit = () => damage++;
 
   /**
    * Checks if the ship is sunk.
