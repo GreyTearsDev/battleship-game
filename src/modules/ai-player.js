@@ -42,7 +42,7 @@ export function AIPlayer(player) {
         player.attack(enemyPlayer, row, col);
         player.usedCoordinates.add(coordinates);
         resolve(true);
-      }, 200);
+      }, 300);
     });
   }
 
