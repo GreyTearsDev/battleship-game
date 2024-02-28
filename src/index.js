@@ -2,18 +2,19 @@ import './styles.css';
 import { Player } from './modules/player';
 import { AIPlayer } from './modules/ai-player';
 import Ship from './modules/ship'
-import { getShipDOMElements, getAllDOMGameboardCells } from './utilities/dom'
+import { getAllDOMGameboardCells, getGridCell, renderAttack } from './utilities/dom'
 import { renderShipsOnBoard } from './modules/dom/render-ships';
+import { getTheWinner } from './modules/game'
 
-(function () {
+
   const ships = {
     carrier: Ship('Carrier', 5),
     battleship: Ship('Battleship', 4),
     cruiser: Ship('Cruiser', 3),
     destroyer: Ship('Destroyer', 2)
   };
-  const player = Player();
-  const computer = AIPlayer(Player());
+  const player = new Player("Human Player");
+  const computer = AIPlayer(new Player("Computer"));
 
   let row = 0;
   let col = 0;
@@ -24,7 +25,6 @@ import { renderShipsOnBoard } from './modules/dom/render-ships';
     player.gameboard.placeShip(ship, row++, col++);
   }
   computer.placeShipRandomly(ships)
-
   renderShipsOnBoard(player, computer);
 
   let computerGridCells = getAllDOMGameboardCells("computer");  
@@ -33,22 +33,21 @@ import { renderShipsOnBoard } from './modules/dom/render-ships';
     cell.addEventListener("click", function(){
       let row = cell.dataset.row;
       let col = cell.dataset.col;
-      player.attack(computer, row, col);
+      
+      const attackResult = player.attack(computer, row, col);
+      renderAttack(cell, attackResult);
+      console.log(computer.gameboard.allShipsSunk())
 
-      setTimeout(() => {
-        computer.attack(player)
-      }, 200);
+      computer.attack(player).then((result) => {
+        const [attackResult, attackedRow, attackedCol] = result;
+        const attackedCell = getGridCell("player", attackedRow, attackedCol);
+        renderAttack(attackedCell, attackResult);
+    });
 
-      if (player.gameboard.allShipsSunk() || computer.gameboard.allShipsSunk()) {
-        // show winner
-        if (player.gameboard.allShipsSunk) {
-          console.log("You've won");
-        } else {
-          console.log("computer won")
-        }
-        console.log("someone died")
-      }
+                
+    const WINNER = getTheWinner(player, computer);
+    if (WINNER !== null) {
+      console.log(WINNER.getName(), "won")
+    } 
     });
   })
-})();
-
