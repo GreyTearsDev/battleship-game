@@ -57,7 +57,7 @@ export function setClass(element, className) {
  */ 
 export function renderAttack(cell, attackResult) {
   switch (attackResult) {
-    case "ilegal":
+    case "illegal":
       return;
     case "hit":
       setClass(cell, "shot--hit");
