@@ -48,3 +48,22 @@ export function getAllDOMGameboardCells(playerID) {
 export function setClass(element, className) {
   element.classList.add(className);
 }
+
+/**
+ * Renders the result of an attack on a game board cell.
+ * Depending on the attack result, applies a corresponding CSS class to the cell.
+ * @param {HTMLElement} cell - The DOM element representing the game board cell.
+ * @param {string} attackResult - The result of the attack: "hit" for a successful hit, "miss" for a miss, "illegal" if the attack is illegal.
+ */ 
+export function renderAttack(cell, attackResult) {
+  switch (attackResult) {
+    case "ilegal":
+      return;
+    case "hit":
+      setClass(cell, "shot--hit");
+      break;
+    case "miss":
+      setClass(cell, "shot--miss");
+      break;
+  }
+}
