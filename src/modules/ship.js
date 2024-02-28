@@ -7,7 +7,7 @@
  * @returns {Object} A ship object with methods for setting length, getting length,
  *                   recording hits, counting hits, and determining if the ship is sunk.
  */ 
-const Ship = (shipName, length) => {
+export default function Ship(shipName, length) {
   const name = shipName;
   let damage = 0;
   let orientation = false;
@@ -69,4 +69,3 @@ const Ship = (shipName, length) => {
   };
 };
 
-module.exports = Ship;
