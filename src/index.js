@@ -8,10 +8,10 @@ import { getTheWinner } from './modules/game'
 
 
   const ships = {
-    carrier: Ship('Carrier', 5),
-    battleship: Ship('Battleship', 4),
-    cruiser: Ship('Cruiser', 3),
-    destroyer: Ship('Destroyer', 2)
+    carrier: new Ship('Carrier', 5),
+    battleship: new Ship('Battleship', 4),
+    cruiser: new Ship('Cruiser', 3),
+    destroyer: new Ship('Destroyer', 2)
   };
   const player = new Player("Human Player");
   const computer = AIPlayer(new Player("Computer"));
@@ -36,7 +36,6 @@ import { getTheWinner } from './modules/game'
       
       const attackResult = player.attack(computer, row, col);
       renderAttack(cell, attackResult);
-      console.log(computer.gameboard.allShipsSunk())
 
       computer.attack(player).then((result) => {
         const [attackResult, attackedRow, attackedCol] = result;
