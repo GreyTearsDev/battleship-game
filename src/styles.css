@@ -69,11 +69,10 @@ body {
   background-color: rgba(100, 23, 250, 0.2);
 }
 
-.ship--active {
+.shot--miss {
+  background-color: red;
 }
 
-.ship--hit {
-}
-
-.ship--sunk {
+.shot--hit {
+  background-color: green;
 }
