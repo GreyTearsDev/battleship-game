@@ -14,18 +14,21 @@ export function Player(playerName) {
 
   /**
    * Attacks the enemy player's game board at the specified row and column.
+   * If the attack is successful, marks the coordinates as used and returns "hit".
+   * If the attack is unsuccessful or if the coordinates are already used, returns "miss".
    * @param {Object} enemyPlayer - The enemy player object.
    * @param {number} row - The row index of the attack.
    * @param {number} col - The column index of the attack.
-   * @return {boolean} True if the attack is successful, false otherwise.
+   * @return {string} "hit" if the attack is successful, "miss" if unsuccessful or coordinates are already used, "illegal" if the attack is not allowed.
    */
-   const attack = (enemyPlayer, row, col) => {
-     const coordinates = `${row},${col}`;
-     if (usedCoordinates.has(coordinates)) return "illegal";
-     const attackResult = enemyPlayer.gameboard.receiveAttack(row, col);
+  function attack(enemyPlayer, row, col) {
+    const coordinates = `${row},${col}`;
+  
+    if (usedCoordinates.has(coordinates)) return "illegal";
+    const attackResult = enemyPlayer.gameboard.receiveAttack(row, col);
 
-     usedCoordinates.add(coordinates);
-     return attackResult ? "hit" : "miss";
+    usedCoordinates.add(coordinates);
+    return attackResult ? "hit" : "miss";
    };
 
    /**
