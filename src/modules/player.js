@@ -8,7 +8,7 @@
  * @returns {Object} An object representing a player.
  */
 export function Player(playerName) {
-  const gameboard = Gameboard();
+  const gameboard = new Gameboard();
   const name = playerName;
   const usedCoordinates = new Set();
 
