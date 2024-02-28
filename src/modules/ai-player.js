@@ -31,18 +31,20 @@ export function AIPlayer(player) {
    */
   const attack = (enemyPlayer) => {
     return new Promise((resolve, reject) => {
-      let coordinates = getRandomCoordinates();
+      let coordinates = getRandomCoordinates().join("");
 
       while (player.usedCoordinates.has(coordinates)) {
-        coordinates = getRandomCoordinates();
+        coordinates = getRandomCoordinates().join("");
       }
     
-      let [row, col] = coordinates;
+      let row = coordinates[0];
+      let col = coordinates[1];
+      
       setTimeout(() => {
-        player.attack(enemyPlayer, row, col);
+        const attackResult = player.attack(enemyPlayer, row, col);
         player.usedCoordinates.add(coordinates);
-        resolve(true);
-      }, 300);
+        resolve([attackResult, row, col]);
+      }, 150);
     });
   }
 
@@ -66,9 +68,11 @@ export function AIPlayer(player) {
     }
   };
 
+  const getName = () => player.getName();
   return {
     gameboard,
     attack,
-    placeShipRandomly
+    placeShipRandomly,
+    getName
   }
 }
