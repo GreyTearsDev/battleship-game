@@ -95,13 +95,13 @@ export default function GameBoard() {
    */
   const getMissedShots = () => missedShots;
 
-    /**
+  /**
    * Checks if all ships on the game board are sunk.
    * @returns {boolean} - True if all ships are sunk, false otherwise.
    */
   const allShipsSunk = () => {
-    for (let ship in ships) {
-      if (!ships[ship].isSunk()) return false;
+    for (let ship of ships) {
+      if (!ship.isSunk()) return false;
     }
     return true;
   }
