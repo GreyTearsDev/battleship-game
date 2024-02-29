@@ -4,7 +4,7 @@ import { AIPlayer } from './modules/ai-player';
 import { createShips }  from './modules/ship'
 import { getAllDOMGameboardCells, getGridCell, renderAttack } from './utilities/dom'
 import { renderShipsOnBoard } from './modules/dom/render-ships';
-import { getTheWinner } from './modules/game'
+import { getTheWinner, handleAttack } from './modules/game'
 
 
 const player = new Player("Human Player");
@@ -24,26 +24,9 @@ renderShipsOnBoard("player", player);
 
 let computerGridCells = getAllDOMGameboardCells("computer");  
 
-computerGridCells.forEach((cell) => {
-  cell.addEventListener("click", function(){
-    let row = cell.dataset.row;
-    let col = cell.dataset.col;  
-    const attackResult = player.attack(computer, row, col);
+computerGridCells.forEach((cell) => cell.addEventListener("click", function(event) {
+  const cell = event.target;
+  handleAttack(cell, player, computer)
+}));
 
-    renderAttack(cell, attackResult);
-  
-    if (attackResult === "illegal") return;
- 
-    computer.attack(player).then((result) => {
-      const [attackResult, attackedRow, attackedCol] = result;
-      const attackedCell = getGridCell("player", attackedRow, attackedCol);
-      renderAttack(attackedCell, attackResult);
-  });
 
-              
-  const WINNER = getTheWinner(player, computer);
-  if (WINNER !== null) {
-    console.log(WINNER.getName(), "won")
-  } 
-  });
-})
