@@ -1,5 +1,6 @@
 'use strict'
  import Gameboard from '../modules/board';
+import getRandomInt from '../utilities/random-int';
 
 /**
  * Represents a player in the game.
@@ -36,11 +37,42 @@ export function Player(playerName) {
    * @return {string} name - The name of the player.
    */
    const getName = () => name;  
+ 
+  /**
+   * Generates random attack coordinates.
+   * @returns {Array} An array containing the row and column indices of the attack.
+   */
+  const getRandomCoordinates = () => {
+    let coordinates = [];
+    coordinates.push(getRandomInt(10));
+    coordinates.push(getRandomInt(10));
+    return coordinates;
+  } 
+
+  /**
+   * Randomly places ships on the game board.
+   * @param {Object[]} ships - An array of ship objects to be placed on the board.
+   */
+  const placeShipRandomly = (ships) => {
+    let [row, col] = getRandomCoordinates();
+      
+    for (let ship in ships) {
+      ship = ships[ship]
+
+      while (!gameboard.isLegal(ship, row, col)) {
+        if (Math.random() >= 0.5) ship.switchOrientation();
+        [row, col] = getRandomCoordinates();
+      }
+      gameboard.placeShip(ship, row, col)
+    }
+  };
 
    return {
     gameboard,
     usedCoordinates,
     attack,
     getName,
+    placeShipRandomly,
+    getRandomCoordinates
    }
 }
