@@ -1,6 +1,5 @@
 'use strict'
-import { renderAttack } from "../utilities/dom";
-import { getGridCell } from "../utilities/dom";
+import { renderAttack, getGridCell } from "../utilities/dom";
 /**
   * Checks if there is a winner by looking at the boards of each player and
   * checking if all of its ships have been sunk
@@ -15,6 +14,13 @@ export function getTheWinner(player, computer) {
   if (computer.gameboard.allShipsSunk()) return player;
   return null;
 }
+
+/**
+ * Handles an attack on the game board initiated by a player.
+ * @param {HTMLElement} cell - The DOM element representing the target cell.
+ * @param {Object} player - The player object initiating the attack.
+ * @param {Object} computer - The opponent player object.
+ */
 export function handleAttack(cell, player, computer){
   let row = cell.dataset.row;
   let col = cell.dataset.col;  
@@ -29,10 +35,4 @@ export function handleAttack(cell, player, computer){
     const attackedCell = getGridCell("player", attackedRow, attackedCol);
     renderAttack(attackedCell, attackResult);
   });
-
-              
-  const WINNER = getTheWinner(player, computer);
-  if (WINNER !== null) {
-    console.log(WINNER.getName(), "won")
-  } 
 }
