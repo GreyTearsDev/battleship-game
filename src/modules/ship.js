@@ -7,7 +7,7 @@
  * @returns {Object} A ship object with methods for setting length, getting length,
  *                   recording hits, counting hits, and determining if the ship is sunk.
  */ 
-export default function Ship(shipName, length) {
+export function Ship(shipName, length) {
   const name = shipName;
   let damage = 0;
   let orientation = false;
@@ -43,7 +43,7 @@ export default function Ship(shipName, length) {
   /**
    * Records a hit on the ship.
    */
-  const hit = () => damage++;
+  const hit = () => ++damage;
 
   /**
    * Checks if the ship is sunk.
@@ -57,7 +57,6 @@ export default function Ship(shipName, length) {
    */
   const getName = () => name;
 
-  // expose public mthods
   return {
     switchOrientation,
     getOrientation,
@@ -69,3 +68,12 @@ export default function Ship(shipName, length) {
   };
 };
 
+
+export function createShips() {
+  return {    
+    carrier: new Ship('Carrier', 5),
+    battleship: new Ship('Battleship', 4),
+    cruiser: new Ship('Cruiser', 3),
+    destroyer: new Ship('Destroyer', 2)
+  }
+};
