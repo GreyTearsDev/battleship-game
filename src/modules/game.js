@@ -1,5 +1,6 @@
 'use strict'
-
+import { renderAttack } from "../utilities/dom";
+import { getGridCell } from "../utilities/dom";
 /**
   * Checks if there is a winner by looking at the boards of each player and
   * checking if all of its ships have been sunk
@@ -14,8 +15,24 @@ export function getTheWinner(player, computer) {
   if (computer.gameboard.allShipsSunk()) return player;
   return null;
 }
+export function handleAttack(cell, player, computer){
+  let row = cell.dataset.row;
+  let col = cell.dataset.col;  
+  const attackResult = player.attack(computer, row, col);
 
+  renderAttack(cell, attackResult);
 
-//TODO:display winner
+  if (attackResult === "illegal") return;
 
+  computer.attack(player).then((result) => {
+    const [attackResult, attackedRow, attackedCol] = result;
+    const attackedCell = getGridCell("player", attackedRow, attackedCol);
+    renderAttack(attackedCell, attackResult);
+  });
 
+              
+  const WINNER = getTheWinner(player, computer);
+  if (WINNER !== null) {
+    console.log(WINNER.getName(), "won")
+  } 
+}
