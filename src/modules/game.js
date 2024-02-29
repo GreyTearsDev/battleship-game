@@ -10,8 +10,8 @@
   *                  gameboards.
  */
 export function getTheWinner(player, computer) {
-  if (player.gameboard.allShipsSunk()) return player;
-  if (computer.gameboard.allShipsSunk()) return computer;
+  if (player.gameboard.allShipsSunk()) return computer;
+  if (computer.gameboard.allShipsSunk()) return player;
   return null;
 }
 
