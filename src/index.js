@@ -2,10 +2,9 @@ import './styles.css';
 import { Player } from './modules/player';
 import { AIPlayer } from './modules/ai-player';
 import { createShips }  from './modules/ship'
-import { getAllDOMGameboardCells, getGridCell, renderAttack } from './utilities/dom'
+import { getAllDOMGameboardCells } from './utilities/dom'
 import { renderShipsOnBoard } from './modules/dom/render-ships';
 import { getTheWinner, handleAttack } from './modules/game'
-
 
 const player = new Player("Human Player");
 const playerShips = new createShips();
@@ -23,10 +22,11 @@ computer.placeShipRandomly(computerShips)
 renderShipsOnBoard("player", player);
 
 let computerGridCells = getAllDOMGameboardCells("computer");  
+computerGridCells.forEach((cell) => cell.addEventListener("click", attackHandler));
 
-computerGridCells.forEach((cell) => cell.addEventListener("click", function(event) {
+function attackHandler(event) {
   const cell = event.target;
   handleAttack(cell, player, computer)
-}));
-
-
+  let winner = getTheWinner(player, computer);
+  if (winner) console.log(winner.getName())
+}
