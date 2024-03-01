@@ -9,21 +9,31 @@ import getRandomInt from '../utilities/random-int'
 export function AIPlayer(player) {
   const gameboard = player.gameboard;
    
+
+  /**
+  * Generates random attack coordinates that have not been used before.
+  * @returns {string} A string representing the random attack coordinates.
+  */
+  const generateRandomAttackCoordinates = () => {
+    let coordinates = player.getRandomCoordinates().join("");
+
+    while (player.usedCoordinates.has(coordinates)) {
+      coordinates = player.getRandomCoordinates().join("");
+    }
+
+    return coordinates;
+  }
+
+  
    /**
    * Attacks the enemy player's game board with random coordinates.
    * @param {Object} enemyPlayer - The enemy player object.
    */
   const attack = (enemyPlayer) => {
     return new Promise((resolve, reject) => {
-      let coordinates = player.getRandomCoordinates().join("");
+      let coordinates = generateRandomAttackCoordinates();
+      let [row, col] = coordinates;
 
-      while (player.usedCoordinates.has(coordinates)) {
-        coordinates = player.getRandomCoordinates().join("");
-      }
-    
-      let row = coordinates[0];
-      let col = coordinates[1];
-      
       setTimeout(() => {
         const attackResult = player.attack(enemyPlayer, row, col);
         player.usedCoordinates.add(coordinates);
