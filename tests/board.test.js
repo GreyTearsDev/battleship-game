@@ -1,5 +1,5 @@
 import Gameboard from '../src/modules/board';
-import Ship from '../src/modules/ship';
+import { Ship } from '../src/modules/ship';
 import {jest} from '@jest/globals'
 
 jest.mock('../src/modules/ship')

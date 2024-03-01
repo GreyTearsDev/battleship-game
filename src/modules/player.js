@@ -1,5 +1,5 @@
 'use strict'
- import Gameboard from '../modules/board';
+import Gameboard from '../modules/board';
 import getRandomInt from '../utilities/random-int';
 
 /**
