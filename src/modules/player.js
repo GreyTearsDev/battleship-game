@@ -25,11 +25,11 @@ export function Player(playerName) {
   function attack(enemyPlayer, row, col) {
     const coordinates = `${row},${col}`;
   
-    if (usedCoordinates.has(coordinates)) return "illegal";
+    if (usedCoordinates.has(coordinates)) return 'illegal';
     const attackResult = enemyPlayer.gameboard.receiveAttack(row, col);
 
     usedCoordinates.add(coordinates);
-    return attackResult ? "hit" : "miss";
+    return attackResult ? 'hit' : 'miss';
    };
 
    /**
