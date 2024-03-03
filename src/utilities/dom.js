@@ -22,7 +22,7 @@ export function getShipDOMElements(playerID, player) {
   let shipDOMElements = []
   const shipsCoordinates = player.gameboard.shipsCoordinates;
   for (let coordinate of shipsCoordinates) {
-    let [row, col] = coordinate.split(',');
+    let [row, col] = coordinate;
     shipDOMElements.push(getGridCell(playerID, row, col));
   }
 
