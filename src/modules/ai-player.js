@@ -48,9 +48,13 @@ export function AIPlayer(player) {
             [row, col] = adjacentCells.pop();
             attackResult = player.attack(enemyPlayer, row, col);
           }
-        } else if (attackResult === 'illegal' || !attackResult) {
-          // If no adjacent cells to attack or last attack was illegal, perform a random attack
+        } else {
           attackResult = player.attack(enemyPlayer, row, col);
+
+          while (attackResult === 'illegal') {
+            [row, col] = generateRandomAttackCoordinates();
+            attackResult = player.attack(enemyPlayer, row, col);
+          }
         }
         
         // if the attack is a hit, find adjacent cells to continue the attack
@@ -60,7 +64,6 @@ export function AIPlayer(player) {
           });
         }
         
-        console.log(attackResult)
         player.usedCoordinates.add(`${row},${col}`);
         resolve([attackResult, row, col]);
       }, 150);
