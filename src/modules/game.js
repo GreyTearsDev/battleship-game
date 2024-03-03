@@ -22,8 +22,8 @@ export function getTheWinner(player, computer) {
  * @param {Object} computer - The opponent player object.
  */
 export function handleAttack(cell, player, computer){
-  let row = cell.dataset.row;
-  let col = cell.dataset.col;  
+  let row = parseInt(cell.dataset.row);
+  let col = parseInt(cell.dataset.col);  
   const attackResult = player.attack(computer, row, col);
 
   renderAttack(cell, attackResult);
