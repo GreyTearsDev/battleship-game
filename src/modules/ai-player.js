@@ -1,5 +1,6 @@
 'use strict'
 import getRandomInt from '../utilities/random-int'
+import { getAdjacentCells } from '../utilities/get-cells';
 
 /**
  * Represents an AI player in the game.
@@ -8,35 +9,59 @@ import getRandomInt from '../utilities/random-int'
  */
 export function AIPlayer(player) {
   const gameboard = player.gameboard;
-   
+  let lastAttackResult;   
+  let adjacentCells = [];
 
   /**
   * Generates random attack coordinates that have not been used before.
   * @returns {string} A string representing the random attack coordinates.
   */
   const generateRandomAttackCoordinates = () => {
-    let coordinates = player.getRandomCoordinates().join("");
+    let coordinates = player.getRandomCoordinates();
 
     while (player.usedCoordinates.has(coordinates)) {
-      coordinates = player.getRandomCoordinates().join("");
+      coordinates = player.getRandomCoordinates()
     }
-
     return coordinates;
   }
 
-  
-   /**
-   * Attacks the enemy player's game board with random coordinates.
+  /**
+   * Attacks the enemy player's game board strategically.
+   * This method utilizes a mix of Breadth-First Search (BFS) and Depth-First Search (DFS) principles.
+   * BFS is used to prioritize unexplored areas by selecting adjacent cells to attack.
+   * DFS is used to continue the attack until a legal move is made or there are no more cells left to explore.
    * @param {Object} enemyPlayer - The enemy player object.
-   */
+   * @returns {Promise} A promise that resolves with the attack result and coordinates of the attack.
+   */  
   const attack = (enemyPlayer) => {
     return new Promise((resolve, reject) => {
-      let coordinates = generateRandomAttackCoordinates();
-      let [row, col] = coordinates;
-
       setTimeout(() => {
-        const attackResult = player.attack(enemyPlayer, row, col);
-        player.usedCoordinates.add(coordinates);
+        let [row, col] = generateRandomAttackCoordinates();
+        let attackResult;
+        
+        if (adjacentCells.length > 0) {
+          [row, col] = adjacentCells.pop();
+          attackResult = player.attack(enemyPlayer, row, col);
+
+          // continue attacking adjacent cells until a legal attack is made or there are no cells left
+          while (attackResult === 'illegal' && adjacentCells.length > 0) {
+            [row, col] = adjacentCells.pop();
+            attackResult = player.attack(enemyPlayer, row, col);
+          }
+        } else if (attackResult === 'illegal' || !attackResult) {
+          // If no adjacent cells to attack or last attack was illegal, perform a random attack
+          attackResult = player.attack(enemyPlayer, row, col);
+        }
+        
+        // if the attack is a hit, find adjacent cells to continue the attack
+        if (attackResult === 'hit') {
+          getAdjacentCells(enemyPlayer, row, col).forEach((coordinates) => {
+           adjacentCells.push(coordinates); 
+          });
+        }
+        
+        console.log(attackResult)
+        player.usedCoordinates.add(`${row},${col}`);
         resolve([attackResult, row, col]);
       }, 150);
     });
@@ -70,3 +95,4 @@ export function AIPlayer(player) {
     getName
   }
 }
+
