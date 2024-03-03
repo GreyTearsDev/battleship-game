@@ -19,10 +19,10 @@ export default function GameBoard() {
 
     for (let i = 0; i < ship.getLength(); i++) {
       if (ship.getOrientation() === "horizontal") {
-        shipsCoordinates.push(`${row},${col}`)
+        shipsCoordinates.push([row, col])
         board[row][col++] = ship.getLength();
       } else {
-        shipsCoordinates.push(`${row},${col}`)
+        shipsCoordinates.push([row, col])
         board[row++][col] = ship.getLength();
       }
     }
@@ -75,7 +75,7 @@ export default function GameBoard() {
    */
   const receiveAttack = (row, col) => {
     if (board[row][col] === 0) {
-      missedShots.add([row,col].toString());
+      missedShots.add([row,col]);
       return false;
     }
     
@@ -93,7 +93,6 @@ export default function GameBoard() {
    * Retrieves the set of missed shots on the game board.
    * @returns {Set} - The set containing the coordinates of missed shots.
    */
-  const getMissedShots = () => missedShots;
 
   /**
    * Checks if all ships on the game board are sunk.
@@ -107,12 +106,12 @@ export default function GameBoard() {
   }
   
   return {
+    ships,
     placeShip,
     shipsCoordinates,
     getBoard,
     isLegal,
     receiveAttack, 
-    getMissedShots,
     allShipsSunk,
   }
 }
