@@ -6,6 +6,7 @@ export default function GameBoard() {
   const missedShots = new Set();
   const ships = [];
   const shipsCoordinates = [];
+  let shipsLeft = 4;
   
   /**
    * Places a ship on the game board at the specified row and column.
@@ -67,14 +68,6 @@ export default function GameBoard() {
     } 
   }
   
-  /**
-   * Removes a ship from the player's collection of ships at the specified index.
-   * @param {number} index - The index of the ship to be removed.
-   * @returns {Object} The removed ship.
-   */
-  const removeShip = (index) => {
-    return ships.splice(index, 1);
-  }
 
   /**
    * Handles receiving an attack on the game board.
@@ -93,7 +86,9 @@ export default function GameBoard() {
       let shipIndex = 0;
       if (ship.getLength() === shipId) {
         ship.hit();
-        if (ship.isSunk()) removeShip(shipIndex);
+        if (ship.isSunk()) {
+          shipsLeft--;
+        }
       }
       shipIndex++;
     }
@@ -111,11 +106,10 @@ export default function GameBoard() {
    * @returns {boolean} - True if all ships are sunk, false otherwise.
    */
   const allShipsSunk = () => {
-    for (let ship of ships) {
-      if (!ship.isSunk()) return false;
-    }
-    return true;
+    return shipsLeft === 0;
   }
+
+  const getShipsLeft = () => shipsLeft;
   
   return {
     ships,
@@ -124,6 +118,7 @@ export default function GameBoard() {
     getBoard,
     isLegal,
     receiveAttack, 
+    getShipsLeft,
     allShipsSunk,
   }
 }
