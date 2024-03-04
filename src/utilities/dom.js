@@ -80,5 +80,17 @@ export function displayNumOfShips(player) {
   }
 }
 
+export function displayWinner(winner) {
+  const screen = document.createElement('div');
+  const message = document.createElement('p');
+  const restartBtn = document.createElement('button');
+
+  message.textContent = `${winner.getName()} won the game!`;
+  restartBtn.textContent = 'Play again!';
+  screen.className = 'gameover-screen';
+  screen.appendChild(message);
+  screen.appendChild(restartBtn);
+  document.body.appendChild(screen);
+}
 
 
