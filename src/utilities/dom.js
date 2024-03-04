@@ -67,3 +67,18 @@ export function renderAttack(cell, attackResult) {
       break;
   }
 }
+
+export function displayNumOfShips(player) {
+  const humanPlayerShipsDisplay = document.body.querySelector('.player__ships');
+  const computerShipsDisplay = document.body.querySelector('.computer__ships');
+  let shipsNum = player.gameboard.getShipsLeft();
+
+  if (player.getName() === "Human Player") {
+    humanPlayerShipsDisplay.textContent = `Ships left: ${shipsNum}`;
+  } else {
+    computerShipsDisplay.textContent = `Ships left: ${shipsNum}`;
+  }
+}
+
+
+
