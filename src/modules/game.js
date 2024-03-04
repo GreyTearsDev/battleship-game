@@ -1,5 +1,10 @@
 'use strict'
-import { renderAttack, getGridCell } from "../utilities/dom";
+import { 
+  renderAttack, 
+  getGridCell, 
+  displayNumOfShips, 
+  displayWinner 
+} from "../utilities/dom";
 /**
   * Checks if there is a winner by looking at the boards of each player and
   * checking if all of its ships have been sunk
@@ -15,6 +20,11 @@ export function getTheWinner(player, computer) {
   return null;
 }
 
+function handleVictory(winner) {
+  document.querySelector('.game-screen').remove();
+  displayWinner(winner);
+}
+
 /**
  * Handles an attack on the game board initiated by a player.
  * @param {HTMLElement} cell - The DOM element representing the target cell.
@@ -22,17 +32,34 @@ export function getTheWinner(player, computer) {
  * @param {Object} computer - The opponent player object.
  */
 export function handleAttack(cell, player, computer){
+  let winner = getTheWinner(player, computer)
+  if (winner) {
+    handleVictory(winner);
+    return;
+  }
+    
   let row = parseInt(cell.dataset.row);
   let col = parseInt(cell.dataset.col);  
   const attackResult = player.attack(computer, row, col);
-
+  
   renderAttack(cell, attackResult);
-
-  if (attackResult === "illegal") return;
-
+  
+  if (attackResult === 'illegal') return;
+  if (attackResult === 'hit') displayNumOfShips(computer);
+  
   computer.attack(player).then((result) => {
+    winner = getTheWinner(player, computer)
+    if (winner) {
+      handleVictory(winner);
+      return;
+    }
+  
     const [attackResult, attackedRow, attackedCol] = result;
     const attackedCell = getGridCell("player", attackedRow, attackedCol);
+    
     renderAttack(attackedCell, attackResult);
+    
+    if (attackResult === 'hit') displayNumOfShips(player);
   });
+  
 }
