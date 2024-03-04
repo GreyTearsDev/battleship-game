@@ -3,25 +3,20 @@ import { Player } from './modules/player';
 import { AIPlayer } from './modules/ai-player';
 import { createShips }  from './modules/ship'
 import { getAllDOMGameboardCells } from './utilities/dom'
-import { renderShipsOnBoard } from './modules/dom/render-ships';
+import { renderShips } from './modules/dom/render-ships';
 import { getTheWinner, handleAttack } from './modules/game'
 
 const player = new Player("Human Player");
 const playerShips = new createShips();
 const computer = AIPlayer(new Player("Computer"));
 const computerShips = new createShips();
+const computerGridCells = getAllDOMGameboardCells("computer");  
 
-let row = 0;
-let col = 0;
 
-// Place the ships on the board
-for (let ship in playerShips) {
-  player.gameboard.placeShip(playerShips[ship], row++, col++);
-}
-computer.placeShipRandomly(computerShips)
-renderShipsOnBoard("player", player);
+player.placeShipRandomly(playerShips)
+computer.placeShipRandomly(computerShips);
+renderShips("player", player);
 
-let computerGridCells = getAllDOMGameboardCells("computer");  
 computerGridCells.forEach((cell) => cell.addEventListener("click", attackHandler));
 
 function attackHandler(event) {
