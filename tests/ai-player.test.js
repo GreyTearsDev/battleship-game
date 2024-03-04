@@ -29,7 +29,7 @@ describe('AIPlayer', () => {
     // Advance timers to execute the attack
     jest.advanceTimersByTime(200);
     // Check if the attack is made
-    expect(playerMock.attack).toHaveBeenCalledWith(enemyPlayerMock, "3", "5");
+    expect(playerMock.attack).toHaveBeenCalledWith(enemyPlayerMock, 3, 5);
   });
 
   test('gameboard property should return the correct gameboard object', () => {
