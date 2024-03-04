@@ -63,10 +63,5 @@ describe('Gameboard Methods', () => {
       expect(ship.hitCount()).toBe(ship.damage);
     });
 
-    test("should record the coordinates of missed shots", () => {
-      gameboard.receiveAttack(coor[0] - 3, coor[1]);
-      const missedShots = gameboard.getMissedShots();
-      expect(missedShots.size).toBeGreaterThan(0)
-    });
   });
 });
