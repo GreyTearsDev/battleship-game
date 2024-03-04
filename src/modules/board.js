@@ -68,6 +68,15 @@ export default function GameBoard() {
   }
   
   /**
+   * Removes a ship from the player's collection of ships at the specified index.
+   * @param {number} index - The index of the ship to be removed.
+   * @returns {Object} The removed ship.
+   */
+  const removeShip = (index) => {
+    return ships.splice(index, 1);
+  }
+
+  /**
    * Handles receiving an attack on the game board.
    * @param {number} row - The row index of the attack.
    * @param {number} col - The column index of the attack.
@@ -81,9 +90,12 @@ export default function GameBoard() {
     
     const shipId = board[row][col];
     for (let ship of ships) {
+      let shipIndex = 0;
       if (ship.getLength() === shipId) {
         ship.hit();
+        if (ship.isSunk()) removeShip(shipIndex);
       }
+      shipIndex++;
     }
     board[row][col] = 0;
     return true;
