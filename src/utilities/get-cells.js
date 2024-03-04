@@ -20,7 +20,7 @@ export function getAdjacentCells(player, row, col) {
     adjacentCells.push([top, col])
   }; 
 
-  if (bottom <= board.length && !usedCoordinates.has([bottom, col])) {
+  if (bottom < board.length && !usedCoordinates.has([bottom, col])) {
     adjacentCells.push([bottom, col]);
   } 
 
@@ -28,7 +28,7 @@ export function getAdjacentCells(player, row, col) {
     adjacentCells.push([row, left]);
   } 
 
-  if (right <= board[row].length && !usedCoordinates.has([row, right])) {
+  if (right < board[row].length && !usedCoordinates.has([row, right])) {
     adjacentCells.push([row, right]);
   } 
   return adjacentCells;
