@@ -8,7 +8,7 @@ import { setClass, getShipDOMElements } from "../../utilities/dom";
  * @param {object} player - The player object containing ship information.
  * @param {object} computer - The computer object containing ship information.
  */
-export function renderShipsOnBoard(playerID, playerObject) {
+export function renderShips(playerID, playerObject) {
   let DOMElements = getShipDOMElements(playerID, playerObject);
   DOMElements.forEach((cell) => setClass(cell, "ship"))
 }
