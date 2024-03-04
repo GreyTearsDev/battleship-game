@@ -57,13 +57,13 @@ export function setClass(element, className) {
  */ 
 export function renderAttack(cell, attackResult) {
   switch (attackResult) {
-    case "illegal":
+    case 'illegal':
       return;
-    case "hit":
-      setClass(cell, "shot--hit");
+    case 'hit':
+      setClass(cell, 'shot--hit');
       break;
-    case "miss":
-      setClass(cell, "shot--miss");
+    case 'miss':
+      setClass(cell, 'shot--miss');
       break;
   }
 }
