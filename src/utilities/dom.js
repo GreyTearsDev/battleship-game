@@ -68,6 +68,11 @@ export function renderAttack(cell, attackResult) {
   }
 }
 
+/**
+ * Displays the number of ships left for a given player.
+ * @param {Player} player - The player whose ship count is to be displayed.
+ * @returns {void}
+ */
 export function displayNumOfShips(player) {
   const humanPlayerShipsDisplay = document.body.querySelector('.player__ships');
   const computerShipsDisplay = document.body.querySelector('.computer__ships');
@@ -80,6 +85,11 @@ export function displayNumOfShips(player) {
   }
 }
 
+/**
+ * Displays the winner of the game along with a restart button.
+ * @param {Player} winner - The winner of the game.
+ * @returns {void}
+ */
 export function displayWinner(winner) {
   const screen = document.createElement('div');
   const message = document.createElement('p');
