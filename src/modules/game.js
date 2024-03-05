@@ -10,12 +10,13 @@ import { Player } from './player';
 import { AIPlayer } from './ai-player';
 import { createShips } from './ship';
 import { renderShips } from '../modules/dom/render-ships';
+import { createGameScreen, removeGameScreen } from './dom/screen/game-screen';
 import {
-  createGameScreen,
-  removeGameScreen,
-  showGameScreen,
-} from './dom/screen/game-screen';
-import { createEndScreen, showEndScreen } from './dom/screen/end-screen';
+  createEndScreen,
+  removeEndScreen,
+  showEndScreen,
+} from './dom/screen/end-screen';
+import { removeStartScreen } from './dom/screen/start-screen';
 
 /**
  * Checks if there is a winner by looking at the boards of each player and
@@ -82,13 +83,14 @@ export function handleAttack(cell, player, computer) {
  * @returns {void}
  */
 export function initializeGame() {
+  removeStartScreen();
+  createGameScreen();
   let player = new Player('Human Player');
   const playerShips = new createShips();
   let computer = AIPlayer(new Player('Computer'));
   const computerShips = new createShips();
   const computerGridCells = getAllDOMGameboardCells('computer');
 
-  createGameScreen();
   player.placeShipRandomly(playerShips);
   computer.placeShipRandomly(computerShips);
   renderShips('player', player);
@@ -106,6 +108,7 @@ export function initializeGame() {
    * @returns {void}
    */
   function attackHandler(event) {
+    console.log('called');
     const cell = event.target;
     handleAttack(cell, player, computer);
   }
@@ -128,10 +131,13 @@ function resetGame(player, computer) {
   computer = AIPlayer(new Player('Computer'));
   const computerShips = new createShips();
 
+  removeEndScreen();
+  createGameScreen();
   player.placeShipRandomly(playerShips);
   computer.placeShipRandomly(computerShips);
   resetGridRender('player');
   resetGridRender('computer');
+  renderShips('player', player);
 
   displayNumOfShips(player);
   displayNumOfShips(computer);
@@ -150,8 +156,4 @@ function resetGame(player, computer) {
     const cell = event.target;
     handleAttack(cell, player, computer);
   }
-
-  // Display the game screen and remove the start screen
-  document.body.querySelector('.game-screen').style.display = 'grid';
-  document.body.querySelector('.screen--end').remove();
 }
