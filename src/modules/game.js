@@ -71,6 +71,11 @@ export function handleAttack(cell, player, computer){
   
 }
 
+/**
+ * Initializes the game by creating player and computer objects, placing ships randomly,
+ * rendering ships, updating ship counts, and adding event listeners for attacks.
+ * @returns {void}
+ */
 export function initializeGame() {
   let player = new Player("Human Player");
   const playerShips = new createShips();
@@ -88,14 +93,29 @@ export function initializeGame() {
 
   computerGridCells.forEach((cell) => cell.addEventListener("click", attackHandler));
 
+ /**
+   * Handles an attack initiated by the player.
+   * @param {Event} event - The click event on the game board cell.
+   * @returns {void}
+   */
   function attackHandler(event) {
     const cell = event.target;
     handleAttack(cell, player, computer)
   }
+
+  // Display the game screen and remove the start screen
   document.body.querySelector('.game-screen').style.display = 'grid';
   document.body.querySelector('.screen--start').remove();
 }
 
+/**
+ * Resets the game by deleting the current player and computer objects, instantiating new ones,
+ * placing ships randomly, rendering ships, updating ship counts, adding event listeners for attacks,
+ * and displaying the game screen.
+ * @param {Player} player - The player object.
+ * @param {Object} computer - The computer object.
+ * @returns {void}
+ */
 function resetGame(player, computer) {
   player = null;
   computer = null;
@@ -116,10 +136,17 @@ function resetGame(player, computer) {
   const computerGridCells = getAllDOMGameboardCells("computer");  
   computerGridCells.forEach((cell) => cell.addEventListener("click", attackHandler));
 
+ /**
+   * Handles an attack initiated by the player.
+   * @param {Event} event - The click event on the game board cell.
+   * @returns {void}
+   */
   function attackHandler(event) {
     const cell = event.target;
     handleAttack(cell, player, computer)
   }
+  
+  // Display the game screen and remove the start screen
   document.body.querySelector('.game-screen').style.display = 'grid';
   document.body.querySelector('.screen--end').remove();
 }
