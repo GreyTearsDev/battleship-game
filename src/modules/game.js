@@ -3,7 +3,6 @@ import {
   renderAttack,
   getGridCell,
   displayNumOfShips,
-  displayWinner,
   getAllDOMGameboardCells,
   resetGridRender,
 } from '../utilities/dom';
@@ -11,7 +10,12 @@ import { Player } from './player';
 import { AIPlayer } from './ai-player';
 import { createShips } from './ship';
 import { renderShips } from '../modules/dom/render-ships';
-import { createGameScreen } from './dom/screen/game-screen';
+import {
+  createGameScreen,
+  removeGameScreen,
+  showGameScreen,
+} from './dom/screen/game-screen';
+import { createEndScreen, showEndScreen } from './dom/screen/end-screen';
 
 /**
  * Checks if there is a winner by looking at the boards of each player and
@@ -29,7 +33,9 @@ export function getTheWinner(player, computer) {
 }
 
 function handleVictory(winner) {
-  displayWinner(winner, resetGame);
+  removeGameScreen();
+  createEndScreen(winner, resetGame);
+  showEndScreen();
 }
 
 /**
@@ -103,9 +109,6 @@ export function initializeGame() {
     const cell = event.target;
     handleAttack(cell, player, computer);
   }
-  // Display the game screen and remove the start screen
-  document.body.querySelector('.game-screen').style.display = 'grid';
-  document.body.querySelector('.screen--start').remove();
 }
 
 /**
