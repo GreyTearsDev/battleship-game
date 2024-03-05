@@ -1,5 +1,5 @@
 import './styles.css';
-import { initializeGame } from './modules/game'
-import { displayStartScreen } from './utilities/dom';
+import { initializeGame } from './modules/game';
+import { createStartScreen } from './modules/dom/screen/start-screen';
 
-displayStartScreen(initializeGame);
+createStartScreen(initializeGame);
