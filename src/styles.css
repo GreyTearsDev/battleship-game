@@ -30,11 +30,20 @@ body {
   color: green;
 }
 
-.screen--game {
+.screen {
+  justify-content: center;
   align-items: center;
+}
+
+.screen--start,
+.screen--end {
+  display: flex;
+  flex-direction: column;
+}
+
+.screen--game {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  justify-content: center;
 }
 
 .player {
