@@ -12,16 +12,15 @@
   font-weight: 400;
   font-style: normal;
 
-  --color-background: #ffffff;
-  --color-stroke: #1f1235;
-  --color-headline: #1b1425;
-  --color-highlight: #ff626c;
-  --color-secondary: #67568c;
-  --color-ternary: #fbdd74;
+  --color-background: #001e1d;
+  --color-headline: #fffffe;
+  --color-highlight: #f9bc60;
+  --color-secondary: #abd1c6;
+  --color-ternary: #e16162;
 }
 
 body {
-  background-color: var(--color-secondary);
+  background-color: var(--color-background);
   display: grid;
   align-content: center;
   height: 100vh;
@@ -47,7 +46,7 @@ body {
 
 .screen--start,
 .screen--end {
-  background-color: var(--color-ternary);
+  background-color: var(--color-headline);
   border-radius: 20px;
   color: var(--color-background);
   display: flex;
@@ -57,9 +56,6 @@ body {
   height: 60vh;
   justify-self: center;
   width: clamp(700px, 50vw, 60vw);
-}
-
-.screen--start {
 }
 
 .screen--game {
@@ -86,7 +82,11 @@ body {
   justify-content: center;
 }
 
-.player__board > div {
+.player__board {
+}
+
+.cell {
+  background-color: var(--color-headline);
   border: 1px solid black;
 }
 
@@ -96,13 +96,13 @@ body {
 }
 
 .ship {
-  background-color: rgba(100, 23, 250, 0.2);
+  background-color: var(--color-highlight);
 }
 
 .shot--miss {
-  background-color: red;
+  background-color: var(--color-ternary);
 }
 
 .shot--hit {
-  background-color: green;
+  background-color: var(--color-secondary);
 }
