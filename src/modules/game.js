@@ -3,8 +3,16 @@ import {
   renderAttack, 
   getGridCell, 
   displayNumOfShips, 
-  displayWinner 
+  displayWinner, 
+  getAllDOMGameboardCells, 
+  resetGridRender
 } from "../utilities/dom";
+import { Player } from './player'
+import { AIPlayer } from './ai-player';
+import { createShips }  from './ship'
+import { renderShips } from '../modules/dom/render-ships'
+
+
 /**
   * Checks if there is a winner by looking at the boards of each player and
   * checking if all of its ships have been sunk
@@ -21,8 +29,7 @@ export function getTheWinner(player, computer) {
 }
 
 function handleVictory(winner) {
-  document.querySelector('.game-screen').remove();
-  displayWinner(winner);
+  displayWinner(winner, resetGame);
 }
 
 /**
@@ -63,3 +70,57 @@ export function handleAttack(cell, player, computer){
   });
   
 }
+
+export function initializeGame() {
+  let player = new Player("Human Player");
+  const playerShips = new createShips();
+  let computer = AIPlayer(new Player("Computer"));
+  const computerShips = new createShips();
+  const computerGridCells = getAllDOMGameboardCells("computer");  
+
+
+  player.placeShipRandomly(playerShips)
+  computer.placeShipRandomly(computerShips);
+  renderShips("player", player);
+
+  displayNumOfShips(player);
+  displayNumOfShips(computer);
+
+  computerGridCells.forEach((cell) => cell.addEventListener("click", attackHandler));
+
+  function attackHandler(event) {
+    const cell = event.target;
+    handleAttack(cell, player, computer)
+  }
+  document.body.querySelector('.game-screen').style.display = 'grid';
+  document.body.querySelector('.screen--start').remove();
+}
+
+function resetGame(player, computer) {
+  player = null;
+  computer = null;
+ 
+  player = new Player("Human Player");
+  const playerShips = new createShips();
+  computer = AIPlayer(new Player("Computer"));
+  const computerShips = new createShips();
+
+  player.placeShipRandomly(playerShips)
+  computer.placeShipRandomly(computerShips);
+  resetGridRender("player");
+  resetGridRender("computer");
+
+  displayNumOfShips(player);
+  displayNumOfShips(computer);
+
+  const computerGridCells = getAllDOMGameboardCells("computer");  
+  computerGridCells.forEach((cell) => cell.addEventListener("click", attackHandler));
+
+  function attackHandler(event) {
+    const cell = event.target;
+    handleAttack(cell, player, computer)
+  }
+  document.body.querySelector('.game-screen').style.display = 'grid';
+  document.body.querySelector('.screen--end').remove();
+}
+
