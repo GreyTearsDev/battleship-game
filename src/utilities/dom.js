@@ -1,5 +1,4 @@
-'use strict'
-
+'use strict';
 
 /**
  * Retrieves a DOM element within a grid-like structure based on specified row and column attributes.
@@ -7,9 +6,11 @@
  * @param {string|number} row - The value of the `data-row` attribute of the desired grid cell.
  * @param {string|number} col - The value of the `data-col` attribute of the desired grid cell.
  * @returns {Element|null} The DOM element that matches the specified row and column attributes within the grid structure, or `null` if no matching element is found.
-*/
+ */
 export function getGridCell(playerID, row, col) {
-  return document.querySelector(`[data-playerID="${playerID}"][data-row="${row}"][data-col="${col}"]`);
+  return document.querySelector(
+    `[data-playerID="${playerID}"][data-row="${row}"][data-col="${col}"]`
+  );
 }
 
 /**
@@ -19,7 +20,7 @@ export function getGridCell(playerID, row, col) {
  * @returns {Element[]} An array of DOM elements representing the ships on the player's gameboard.
  */
 export function getShipDOMElements(playerID, player) {
-  let shipDOMElements = []
+  let shipDOMElements = [];
   const shipsCoordinates = player.gameboard.shipsCoordinates;
   for (let coordinate of shipsCoordinates) {
     let [row, col] = coordinate;
@@ -28,7 +29,6 @@ export function getShipDOMElements(playerID, player) {
 
   return shipDOMElements;
 }
-
 
 /**
  * Retrieves all DOM elements representing gameboard cells associated with a specific player.
@@ -50,11 +50,11 @@ export function setClass(element, className) {
 }
 
 export function removeClass(element) {
-  element.className = "";
+  element.className = '';
 }
 
 export function resetGridRender(playerID) {
-  const cells = getAllDOMGameboardCells(playerID)
+  const cells = getAllDOMGameboardCells(playerID);
   cells.forEach((cell) => cell.classList.remove('shot--hit', 'shot--miss'));
 }
 
@@ -63,7 +63,7 @@ export function resetGridRender(playerID) {
  * Depending on the attack result, applies a corresponding CSS class to the cell.
  * @param {HTMLElement} cell - The DOM element representing the game board cell.
  * @param {string} attackResult - The result of the attack: "hit" for a successful hit, "miss" for a miss, "illegal" if the attack is illegal.
- */ 
+ */
 export function renderAttack(cell, attackResult) {
   switch (attackResult) {
     case 'illegal':
@@ -87,7 +87,7 @@ export function displayNumOfShips(player) {
   const computerShipsDisplay = document.body.querySelector('.computer__ships');
   let shipsNum = player.gameboard.getShipsLeft();
 
-  if (player.getName() === "Human Player") {
+  if (player.getName() === 'Human Player') {
     humanPlayerShipsDisplay.textContent = `Ships left: ${shipsNum}`;
   } else {
     computerShipsDisplay.textContent = `Ships left: ${shipsNum}`;
@@ -125,7 +125,7 @@ export function displayStartScreen(eventHandler) {
   const startBtn = document.createElement('button');
 
   message.textContent = 'BATTLESHIP';
-  startBtn.textContent = 'Start Game'
+  startBtn.textContent = 'Start Game';
   startBtn.addEventListener('click', eventHandler);
   screen.classList.add('screen', 'screen--start');
   screen.appendChild(message);
@@ -133,25 +133,23 @@ export function displayStartScreen(eventHandler) {
   document.body.appendChild(screen);
 }
 
-export function hideStartScreen() {
-  
-}
+export function hideStartScreen() {}
 
 /**
  * Creates the game screen containing player and computer boards along with ship displays.
  * @returns {void}
  */
 export function createGameScreen() {
-  const mainScreen = document.createElement('div');  
-  const playerScreen = document.createElement('div');  
-  const playerName = document.createElement('p');  
-  const playerShipDisplayContainer = document.createElement('div');  
+  const mainScreen = document.createElement('div');
+  const playerScreen = document.createElement('div');
+  const playerName = document.createElement('p');
+  const playerShipDisplayContainer = document.createElement('div');
   const playerBoardContainer = document.createElement('div');
   const playerShipDisplayText = document.createElement('p');
-  
-  const computerScreen = document.createElement('div');  
-  const computerName = document.createElement('p');  
-  const computerShipDisplayContainer = document.createElement('div');  
+
+  const computerScreen = document.createElement('div');
+  const computerName = document.createElement('p');
+  const computerShipDisplayContainer = document.createElement('div');
   const computerBoardContainer = document.createElement('div');
   const computerShipDisplayText = document.createElement('p');
 
@@ -166,7 +164,10 @@ export function createGameScreen() {
   computerScreen.className = 'player';
   computerName.className = 'player__name';
   computerShipDisplayContainer.className = 'ship-display';
-  computerBoardContainer.classList.add('player__board', 'player__board--computer');
+  computerBoardContainer.classList.add(
+    'player__board',
+    'player__board--computer'
+  );
   computerShipDisplayText.className = 'computer__ships';
 
   // Set text content for player and computer names
@@ -213,7 +214,27 @@ function createBoard(parent, playerID) {
   return parent;
 }
 
+/**
+ * Hides the game screen by setting its display style to 'none'.
+ * @returns {void}
+ */
 export function hideGameScreen() {
-  
+  document.body.querySelector('.game-screen').style.display = 'none';
 }
 
+/**
+ * Shows the game screen by setting its display style to 'grid'.
+ * @returns {void}
+ */
+export function showGameScreen() {
+  document.body.querySelector('.game-screen').style.display = 'grid';
+}
+
+/**
+ * Removes the game screen element from the document body.
+ * @returns {void}
+ */
+export function removeGameScreen() {
+  const screen = document.body.querySelector('.game-screen');
+  document.body.remove(screen);
+}
