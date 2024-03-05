@@ -33,7 +33,7 @@ export function getTheWinner(player, computer) {
   return null;
 }
 
-function handleVictory(winner) {
+function handleGameOver(winner) {
   removeGameScreen();
   createEndScreen(winner, resetGame);
   showEndScreen();
@@ -48,7 +48,7 @@ function handleVictory(winner) {
 export function handleAttack(cell, player, computer) {
   let winner = getTheWinner(player, computer);
   if (winner) {
-    handleVictory(winner);
+    handleGameOver(winner);
     return;
   }
 
@@ -64,7 +64,7 @@ export function handleAttack(cell, player, computer) {
   computer.attack(player).then((result) => {
     winner = getTheWinner(player, computer);
     if (winner) {
-      handleVictory(winner);
+      handleGameOver(winner);
       return;
     }
 
@@ -133,10 +133,13 @@ function resetGame(player, computer) {
 
   removeEndScreen();
   createGameScreen();
+  
   player.placeShipRandomly(playerShips);
   computer.placeShipRandomly(computerShips);
+  
   resetGridRender('player');
   resetGridRender('computer');
+  
   renderShips('player', player);
 
   displayNumOfShips(player);
