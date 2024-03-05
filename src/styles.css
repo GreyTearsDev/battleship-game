@@ -32,6 +32,7 @@ body {
   bottom: 0;
   position: fixed;
   text-align: center;
+  padding: 8px 0;
   width: 100%;
 }
 
@@ -78,18 +79,24 @@ button {
 }
 
 .screen--game {
+  justify-self: center;
+  width: 60%;
+  gap: 1%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-.player {
-  align-items: center;
+.player > p,
+.computer > p {
+  text-align: center;
+}
+
+.player,
+.computer {
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
-  gap: 1vh;
-  height: 100vh;
   justify-content: center;
+  height: 100vh;
 }
 
 .player__board {

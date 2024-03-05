@@ -25,7 +25,7 @@ export function createGameScreen() {
   playerBoardContainer.classList.add('player__board', 'player__board--player');
   playerShipDisplayText.className = 'player__ships';
 
-  computerScreen.className = 'player';
+  computerScreen.className = 'computer';
   computerName.className = 'player__name';
   computerShipDisplayContainer.className = 'ship-display';
   computerBoardContainer.classList.add(
