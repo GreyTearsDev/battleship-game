@@ -49,6 +49,15 @@ export function setClass(element, className) {
   element.classList.add(className);
 }
 
+export function removeClass(element) {
+  element.className = "";
+}
+
+export function resetGridRender(playerID) {
+  const cells = getAllDOMGameboardCells(playerID)
+  cells.forEach((cell) => cell.classList.remove('shot--hit', 'shot--miss'));
+}
+
 /**
  * Renders the result of an attack on a game board cell.
  * Depending on the attack result, applies a corresponding CSS class to the cell.
@@ -90,17 +99,40 @@ export function displayNumOfShips(player) {
  * @param {Player} winner - The winner of the game.
  * @returns {void}
  */
-export function displayWinner(winner) {
+export function displayWinner(winner, eventHandler) {
   const screen = document.createElement('div');
   const message = document.createElement('p');
   const restartBtn = document.createElement('button');
 
+  document.body.querySelector('.game-screen').style.display = 'none';
   message.textContent = `${winner.getName()} won the game!`;
   restartBtn.textContent = 'Play again!';
-  screen.className = 'gameover-screen';
+  restartBtn.addEventListener('click', eventHandler);
+  screen.classList.add('screen', 'screen--end');
   screen.appendChild(message);
   screen.appendChild(restartBtn);
   document.body.appendChild(screen);
 }
 
+/**
+ * Displays the start screen for the game, allowing the user to start the game.
+ * @param {Function} eventHandler - The event handler function to be called when the start button is clicked.
+ * @returns {void}
+ */
+export function displayStartScreen(eventHandler) {
+  const screen = document.createElement('div');
+  const message = document.createElement('p');
+  const startBtn = document.createElement('button');
+
+  // hide the existing game screen
+  document.body.querySelector('.game-screen').style.display = 'none';
+
+  message.textContent = 'BATTLESHIP';
+  startBtn.textContent = 'Start Game'
+  startBtn.addEventListener('click', eventHandler);
+  screen.classList.add('screen', 'screen--start');
+  screen.appendChild(message);
+  screen.appendChild(startBtn);
+  document.body.appendChild(screen);
+}
 
