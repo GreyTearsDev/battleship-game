@@ -20,7 +20,7 @@
 }
 
 body {
-  background-color: var(--color-background);
+  background-color: var(--color-headline);
   display: grid;
   align-content: center;
   height: 100vh;
@@ -28,15 +28,16 @@ body {
 }
 
 .copyright {
-  background-color: var(--color-ternary);
+  background-color: var(--color-highlight);
   bottom: 0;
   position: fixed;
   text-align: center;
   width: 100%;
 }
 
-.copyright > a {
-  color: green;
+a {
+  text-decoration: underline;
+  color: var(--color-background);
 }
 
 .screen {
@@ -44,9 +45,13 @@ body {
   align-items: center;
 }
 
+.screen--start > p {
+  font-size: 1.5em;
+}
+
 .screen--start,
 .screen--end {
-  background-color: var(--color-headline);
+  background-color: var(--color-secondary);
   border-radius: 20px;
   color: var(--color-background);
   display: flex;
@@ -65,7 +70,6 @@ body {
 
 .player {
   align-items: center;
-  border: 1px solid green;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -75,7 +79,6 @@ body {
 }
 
 .player__board {
-  border: 2px solid blue;
   display: grid;
   grid-template-columns: repeat(10, minmax(10px, 40px));
   grid-template-rows: repeat(10, minmax(10px, 40px));
@@ -87,7 +90,7 @@ body {
 
 .cell {
   background-color: var(--color-headline);
-  border: 1px solid black;
+  border: 0.1px solid var(--color-background);
 }
 
 .player__name {
