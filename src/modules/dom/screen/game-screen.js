@@ -72,6 +72,7 @@ function createBoard(parent, playerID) {
       child.setAttribute('data-row', i);
       child.setAttribute('data-col', j);
       child.setAttribute('data-playerID', playerID);
+      child.className = 'cell';
       parent.appendChild(child);
     }
   }
