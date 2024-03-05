@@ -18,7 +18,7 @@ export function createGameScreen() {
   const computerShipDisplayText = document.createElement('p');
 
   // Set class names for elements
-  mainScreen.className = 'game-screen';
+  mainScreen.className = 'screen--game';
   playerScreen.className = 'player';
   playerName.className = 'player__name';
   playerShipDisplayContainer.className = 'ship-display';
@@ -83,7 +83,7 @@ function createBoard(parent, playerID) {
  * @returns {void}
  */
 export function hideGameScreen() {
-  document.body.querySelector('.game-screen').style.display = 'none';
+  document.body.querySelector('.screen--game').style.display = 'none';
 }
 
 /**
@@ -91,7 +91,7 @@ export function hideGameScreen() {
  * @returns {void}
  */
 export function showGameScreen() {
-  document.body.querySelector('.game-screen').style.display = 'grid';
+  document.body.querySelector('.screen--game').style.display = 'grid';
 }
 
 /**
@@ -99,6 +99,6 @@ export function showGameScreen() {
  * @returns {void}
  */
 export function removeGameScreen() {
-  const screen = document.body.querySelector('.game-screen');
+  const screen = document.body.querySelector('.screen--game');
   document.body.remove(screen);
 }
