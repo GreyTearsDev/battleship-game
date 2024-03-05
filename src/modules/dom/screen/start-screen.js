@@ -39,6 +39,5 @@ export function hideStartScreen() {
  * @returns {void}
  */
 export function removeStartScreen() {
-  const screen = document.body.querySelector('.screen--start');
-  document.body.remove(screen);
+  document.body.querySelector('.screen--start').remove();
 }

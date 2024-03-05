@@ -99,6 +99,5 @@ export function showGameScreen() {
  * @returns {void}
  */
 export function removeGameScreen() {
-  const screen = document.body.querySelector('.screen--game');
-  document.body.remove(screen);
+  document.body.querySelector('.screen--game').remove();
 }

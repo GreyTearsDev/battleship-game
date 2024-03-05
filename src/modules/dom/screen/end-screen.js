@@ -40,6 +40,5 @@ export function hideEndScreen() {
  * @returns {void}
  */
 export function removeEndScreen() {
-  const screen = document.body.querySelector('.screen--end');
-  document.body.remove(screen);
+  document.body.querySelector('.screen--end').remove();
 }
