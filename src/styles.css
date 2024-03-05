@@ -8,6 +8,13 @@
 :root {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1rem;
+
+  --color-background: #ffffff;
+  --color-stroke: #1f1235;
+  --color-headline: #1b1425;
+  --color-highlight: #ff626c;
+  --color-secondary: #67568c;
+  --color-ternary: #fbdd74;
 }
 
 body {
@@ -39,6 +46,10 @@ body {
 .screen--end {
   display: flex;
   flex-direction: column;
+}
+
+.screen--start {
+  border: 1px solid blue;
 }
 
 .screen--game {
