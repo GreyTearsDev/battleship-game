@@ -115,11 +115,11 @@ export function displayWinner(winner, eventHandler) {
 }
 
 /**
- * Displays the start screen for the game, allowing the user to start the game.
+ * Creates and displays the start screen for the game, allowing the user to start the game.
  * @param {Function} eventHandler - The event handler function to be called when the start button is clicked.
  * @returns {void}
  */
-export function displayStartScreen(eventHandler) {
+export function createStartScreen(eventHandler) {
   const screen = document.createElement('div');
   const message = document.createElement('p');
   const startBtn = document.createElement('button');
