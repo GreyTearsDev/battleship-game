@@ -82,6 +82,7 @@ export function initializeGame() {
   const computerShips = new createShips();
   const computerGridCells = getAllDOMGameboardCells('computer');
 
+  createGameScreen();
   player.placeShipRandomly(playerShips);
   computer.placeShipRandomly(computerShips);
   renderShips('player', player);
