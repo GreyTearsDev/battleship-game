@@ -33,6 +33,11 @@ export function getTheWinner(player, computer) {
   return null;
 }
 
+/**
+ * Handles the end of the game by removing the game screen, creating the end screen with the winner displayed, and showing the end screen.
+ * @param {Player} winner - The winner of the game.
+ * @returns {void}
+ */
 function handleGameOver(winner) {
   removeGameScreen();
   createEndScreen(winner, resetGame);
