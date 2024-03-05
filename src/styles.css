@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+
 *,
 *::before,
 *::after {
@@ -6,8 +8,9 @@
 }
 
 :root {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1rem;
+  font-family: "Madimi One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 
   --color-background: #ffffff;
   --color-stroke: #1f1235;
@@ -18,7 +21,7 @@
 }
 
 body {
-  border: 2px solid red;
+  background-color: var(--color-secondary);
   display: grid;
   align-content: center;
   height: 100vh;
@@ -44,12 +47,19 @@ body {
 
 .screen--start,
 .screen--end {
+  background-color: var(--color-ternary);
+  border-radius: 20px;
+  color: var(--color-background);
   display: flex;
   flex-direction: column;
+  font-size: 2rem;
+  gap: 5%;
+  height: 60vh;
+  justify-self: center;
+  width: clamp(700px, 50vw, 60vw);
 }
 
 .screen--start {
-  border: 1px solid blue;
 }
 
 .screen--game {
