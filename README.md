@@ -1,5 +1,8 @@
 # BATTLESHIP
 
+## Where to play it
+Check it out [here](https://greytearsdev.github.io/battleship-game/)
+
 ## Game Rules
 
 The rules of Battleship are simple:
