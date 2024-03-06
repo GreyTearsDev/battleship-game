@@ -1,5 +1,4 @@
 'use strict'
-import getRandomInt from '../utilities/random-int'
 import { getAdjacentCells } from '../utilities/get-cells';
 
 /**
@@ -9,7 +8,6 @@ import { getAdjacentCells } from '../utilities/get-cells';
  */
 export function AIPlayer(player) {
   const gameboard = player.gameboard;
-  let lastAttackResult;   
   let adjacentCells = [];
 
   /**
@@ -66,7 +64,7 @@ export function AIPlayer(player) {
         
         player.usedCoordinates.add(`${row},${col}`);
         resolve([attackResult, row, col]);
-      }, 150);
+      }, 250);
     });
   }
 
