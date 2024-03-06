@@ -53,10 +53,12 @@ button {
   padding: 12px;
   width: 25%;
   cursor: pointer;
+  transition: background-color 100ms;
+  animation: button-pulse 2s ease-in-out infinite;
 }
 
 button:hover {
-  transform: scale(105%);
+  background-color: var(--color-ternary);
 }
 
 .screen {
@@ -151,7 +153,7 @@ button:hover {
   background-color: var(--color-secondary);
   box-shadow: inset 2px 2px rgba(51, 59, 95, 0.4);
   transition: background-color 100ms;
-  animation: pulse 1s infinite;
+  animation: pulse 1s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -161,5 +163,17 @@ button:hover {
   }
   50% {
     background-color: rgba(126, 192, 216, 0.5);
+  }
+}
+
+@keyframes button-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }
